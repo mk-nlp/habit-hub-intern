@@ -16,7 +16,7 @@ export default function Home() {
           Your tasks, your rules, our support.
         </div>
         <div className=" grid col-start-2 col-end-4 mt-32">
-          <ButtonComponent buttonText="Login" />
+          <ButtonComponent buttonText="Login" buttonUrl="/login" />
         </div>
         <a
           className="grid col-start-2 col-end-4 justify-center mt-3 font-poppins text-xs text-black underline opacity-45"
