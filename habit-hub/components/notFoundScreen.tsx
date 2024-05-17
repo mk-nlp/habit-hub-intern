@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import BottomBar from "@/app/login/bottomBar";
-import { ArrowLeftSquare } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function NotFoundScreen() {
@@ -37,9 +37,9 @@ export default function NotFoundScreen() {
         className="absolute bottom-40 right-0 z-0"
       />
       <div className="absolute top-10 left-0 z-0">
-        <ArrowLeftSquare
+        <ArrowLeft
           size={50}
-          className=" text-purple"
+          className=" text-purple hover:cursor-pointer"
           onClick={() => router.push("/login")}
         />
       </div>

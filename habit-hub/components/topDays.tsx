@@ -6,10 +6,10 @@ export default function TopDays() {
       <div className="grid col-start-2 col-end-4 justify-center mt-5 font-poppins font-bold">
         Today
       </div>
-      <div className="grid grid-cols-7 col-start-1 col-end-5 mb-6 font-poppins font-bold items-center">
+      <div className="grid grid-cols-7 col-start-1 col-end-5 mb-6 font-poppins font-bold items-center gap-2 p-0.5">
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60  rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Sun</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -18,7 +18,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-purple ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-purple rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black font-extrabold">Mon</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -27,7 +27,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Tue</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -36,7 +36,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Wed</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -45,7 +45,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60  rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Thu</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -54,7 +54,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60  rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Fri</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
@@ -63,7 +63,7 @@ export default function TopDays() {
         </Button>
         <Button
           buttonUrl="/tomorrow"
-          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60 ml-2 rounded-xl hover:bg-purple hover:font-extrabold"
+          className="grid grid-rows-2 w-13 h-18 bg-pink-2/60  rounded-xl hover:bg-purple hover:font-extrabold"
         >
           <div className=" text-sm mb-2 text-black">Sat</div>
           <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
