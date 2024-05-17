@@ -41,7 +41,8 @@ const config = {
         lime: "#FCF5C7",
         green: "#ADF7B6",
         white: "#FDFDFD",
-        purple: "#C67ED2"
+        purple: "#C67ED2",
+        "pink-2": "#DEB5E4",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

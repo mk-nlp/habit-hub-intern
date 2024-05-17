@@ -17,7 +17,7 @@ export default function ButtonComponent({
 
   return (
     <Button
-      className=" bg-white font-poppins font-bold text-2xl text-black  shadow-xl p-7 "
+      className=" bg-white font-poppins font-bold rounded-xl text-2xl text-black  shadow-xl p-7 hover:bg-purple hover:text-white"
       onClick={() => router.push(buttonUrl)}
     >
       {buttonText}

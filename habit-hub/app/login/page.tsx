@@ -3,13 +3,15 @@ import InputComponent from "@/components/input";
 import ButtonComponent from "@/components/button";
 import Image from "next/image";
 import BackGroundLines from "./backGroundLines";
+import BottomBar from "./bottomBar";
+import { Input } from "postcss";
 
 export default function LoginPage() {
   return (
     <div>
       <div className="grid grid-cols-4 relative">
-        <div className=" grid col-start-2 col-end-4 mt-28 justify-center font-poppins font-extrabold text-xl text-purple">
-          Log in to HabitHub
+        <div className=" grid col-start-2 col-end-4 mt-28 justify-center font-poppins font-extrabold text-xl text-nowrap text-purple">
+          Log in to HabitHUB
         </div>
         <div className=" grid col-start-2 col-end-4 mt-5 justify-center font-poppins text-nowrap text-center">
           <span>Welcome back! Sign in using your social</span>
@@ -23,10 +25,11 @@ export default function LoginPage() {
           <InputComponent placeholder="Password" type="password" />
         </div>
         <div className="grid col-start-2 col-end-4 mt-16 z-10">
-          <ButtonComponent buttonText="Log In" buttonUrl="/dashboard" />
+          <ButtonComponent buttonText="Login" buttonUrl="/login/agreement" />
         </div>
       </div>
       <BackGroundLines />
+      <BottomBar />
     </div>
   );
 }

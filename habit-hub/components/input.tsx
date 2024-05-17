@@ -11,7 +11,7 @@ export default function InputComponent({ placeholder, type }: InputProps) {
     <div>
       <Separator
         orientation="horizontal"
-        className=" w-96 h-0.5 bg-black opacity-15 absolute mt-12 ml-5"
+        className=" w-80 h-0.5 bg-black opacity-15 absolute mt-12 ml-6"
       />
       <Input
         className="bg-white font-poppins  text-black  shadow-xl p-6 mt-3 "
