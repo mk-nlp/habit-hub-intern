@@ -3,7 +3,7 @@ import InputComponent from "@/components/input";
 import ButtonComponent from "@/components/button";
 import Image from "next/image";
 import BackGroundLines from "./backGroundLines";
-import BottomBar from "./bottomBar";
+import BottomBar from "../../components/bottomBar";
 import { Input } from "postcss";
 
 export default function LoginPage() {

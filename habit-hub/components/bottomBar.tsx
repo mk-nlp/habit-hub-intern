@@ -7,7 +7,7 @@ export default function BottomBar() {
       <div className="flex flex-row items-center gap-10">
         <Button variant="ghost">
           <Image
-            src="cal-2.svg"
+            src="/cal-2.svg"
             width={20}
             height={20}
             alt="Calendar"
@@ -15,10 +15,15 @@ export default function BottomBar() {
           />
         </Button>
         <Button variant="ghost">
-          <Image src="checklist-2.svg" width={20} height={20} alt="Checklist" />
+          <Image
+            src="/checklist-2.svg"
+            width={20}
+            height={20}
+            alt="Checklist"
+          />
         </Button>
         <Button variant="ghost">
-          <Image src="profile-2.svg" width={20} height={20} alt="Profile" />
+          <Image src="/profile-2.svg" width={20} height={20} alt="Profile" />
         </Button>
       </div>
     </div>

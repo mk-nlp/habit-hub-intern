@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import BottomBar from "@/app/login/bottomBar";
+import BottomBar from "@/components/bottomBar";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 

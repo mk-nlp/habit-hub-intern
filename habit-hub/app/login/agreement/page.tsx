@@ -1,6 +1,7 @@
 import ButtonComponent from "@/components/button";
 import Image from "next/image";
-import BottomBar from "../bottomBar";
+
+import BottomBar from "@/components/bottomBar";
 
 export default function AgreementPage() {
   return (
