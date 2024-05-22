@@ -29,7 +29,9 @@ export default function LoginPage() {
         </div>
       </div>
       <BackGroundLines />
-      <BottomBar />
+      <div className="mt-48">
+        <BottomBar />
+      </div>
     </div>
   );
 }

@@ -35,7 +35,9 @@ export default function AgreementPage() {
         alt="Line 2"
         className="absolute z-0 top-0 right-0"
       />
-      <BottomBar />
+      <div className="mt-48">
+        <BottomBar />
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function BackGroundLines() {
       alt="Lines"
       width={1000}
       height={1000}
-      className="absolute z-0 top-10 right-0"
+      className="absolute z-0 top-4 right-0"
     />
   );
 }

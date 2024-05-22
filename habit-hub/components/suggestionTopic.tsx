@@ -1,31 +1,22 @@
 import { ChevronRight } from "lucide-react";
+import SuggestionButton from "./suggestionButton";
+import Task from "./task";
 
 interface SuggestionComponentProps {
   suggestion: string;
   category: string;
   explanation: string;
+  task: string;
+  task2: string;
 }
 
 export default function SuggestionComponent({
   suggestion,
   category,
   explanation,
+  task,
+  task2,
 }: SuggestionComponentProps) {
-  const colors = {
-    study: {
-      yellow: "bg-yellow-300",
-      green: "bg-green-300",
-    },
-    exercise: {
-      blue: "bg-blue-300",
-      orange: "bg-orange-300",
-    },
-    cleaning: {
-      lime: "bg-lime-300",
-      pink: "bg-pink-300",
-    },
-  };
-
   const emojis = {
     study: "🧠",
     exercise: "🏋️",
@@ -35,20 +26,20 @@ export default function SuggestionComponent({
   return (
     <div className="grid grid-cols-4 mt-16">
       <div className="grid col-start-1 col-end-4  text-center items-center">
-        <div className=" font-poppins font-medium text-xl ml-5 text-nowrap text-start">
+        <div className=" font-poppins font-bold text-xl ml-5 text-nowrap text-start">
           {emojis[category as keyof typeof emojis]} {suggestion}
         </div>
       </div>
-      <div className="grid grid-cols-2 col-start-4 ml-20 text-nowrap items-center">
+      <div className="grid grid-cols-2 col-start-4 ml-28 text-nowrap items-center">
         <div className=" font-poppins text-xs font-extrabold">See all</div>
         <ChevronRight className=" w-4 ml-11" />
       </div>
-      <div className="grid col-start-1 col-end-4 mt-2 mr-2 font-poppins items-center text-nowrap text-start ml-3">
+      <div className="grid col-start-1 col-end-4 mt-2 mr-2 font-poppins text-xs font-medium items-center text-nowrap text-start ml-3">
         {explanation}
       </div>
-      <div className=" grid col-start-1 col-end-4 p-3 mt-2 ml-5 w-full rounded-xl bg-green">
-        {" "}
-        LOLOL
+      <div className={`grid grid-cols-8 col-start-1 col-end-5 `}>
+        <Task task={task} category={category} />
+        <Task task={task2} category={category} />
       </div>
     </div>
   );

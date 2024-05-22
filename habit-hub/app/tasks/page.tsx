@@ -8,12 +8,11 @@ import PlusButton from "@/components/plusButton";
 
 export default function TasksPage() {
   return (
-    <div className="relative">
+    <div className="">
       <TopDays />
       <RoutineButtons />
+
       <EmptyTasks />
-      <BottomBar />
-      <PlusButton buttonUrl="/tasks/suggestions" />
     </div>
   );
 }

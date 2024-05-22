@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function RoutineButtons() {
   return (
-    <div className="grid grid-cols-4 mt-5">
+    <div className="grid grid-cols-4 justify-center items-center">
       <div className="grid col-start-2 justify-center">
         <Button
           buttonText="Morning"
@@ -39,7 +39,7 @@ export default function RoutineButtons() {
             alt="dots"
             width={6}
             height={6}
-            className="mb-2"
+            className="mt-20"
           />
         </Button>
       </div>
