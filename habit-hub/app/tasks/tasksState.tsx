@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { daysStore } from "./daysState";
 
 export const tasksStore = create((set) => ({
   tasks: [],
@@ -9,4 +8,15 @@ export const tasksStore = create((set) => ({
     set((state) => ({
       tasks: state.tasks.filter((t) => t.id !== task.id),
     })),
+  completeTask: (taskId) => {
+    set((state) => {
+      const newTasks = state.tasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, completed: true };
+        }
+        return task;
+      });
+      return { tasks: newTasks };
+    });
+  },
 }));

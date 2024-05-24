@@ -8,6 +8,8 @@ interface SuggestionComponentProps {
   explanation: string;
   task: string;
   task2: string;
+  task1emoji: string;
+  task2emoji: string;
 }
 
 export default function SuggestionComponent({
@@ -16,6 +18,8 @@ export default function SuggestionComponent({
   explanation,
   task,
   task2,
+  task1emoji,
+  task2emoji,
 }: SuggestionComponentProps) {
   const emojis = {
     study: "🧠",
@@ -38,8 +42,8 @@ export default function SuggestionComponent({
         {explanation}
       </div>
       <div className={`grid grid-cols-8 col-start-1 col-end-5 `}>
-        <Task task={task} category={category} />
-        <Task task={task2} category={category} />
+        <Task task={task} emoji={task1emoji} category={category} />
+        <Task task={task2} emoji={task2emoji} category={category} />
       </div>
     </div>
   );

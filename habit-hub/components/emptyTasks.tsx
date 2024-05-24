@@ -13,7 +13,12 @@ export default function EmptyTasks() {
     return (
       <div className="grid grid-cols-1">
         {tasks.map((task) => (
-          <AddedTask key={task.id} task={task.task} category={task.category} />
+          <AddedTask
+            key={task.id}
+            task={task.task}
+            category={task.category}
+            id={task.id}
+          />
         ))}
         <div className="mt-[500px]">
           <BottomBar />

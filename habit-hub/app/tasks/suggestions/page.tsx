@@ -13,22 +13,28 @@ export default function SuggestionsPage() {
           suggestion="Learn and study more"
           category="study"
           explanation="Stay hungry for knowledge"
-          task="📖 Read"
-          task2="📚 Study"
+          task="Read"
+          task2="Study"
+          task1emoji="📖"
+          task2emoji="📚"
         />
         <SuggestionComponent
           suggestion="Run a mile"
           category="exercise"
           explanation="Become your best version"
-          task="🏃‍♂️ Run"
-          task2="🏋️ Lift weights"
+          task="Run"
+          task2="Lift weights"
+          task1emoji="🏃‍♂️"
+          task2emoji="🏋️"
         />
         <SuggestionComponent
           suggestion="Clean your room"
           category="cleaning"
           explanation="Stay organized"
-          task="🪣 Mop the house"
-          task2="🧼 Clean the bathroom"
+          task="Mop the house"
+          task2="Clean the bathroom"
+          task1emoji="🪣"
+          task2emoji="🧼"
         />
       </div>
       <div className="grid col-start-2 col-end-4 mt-3">

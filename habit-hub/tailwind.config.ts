@@ -35,7 +35,7 @@ const config = {
       colors: {
         pink: "#F3C4FB",
         ash: "#F5F5F5",
-        blue: "#BD30FE",
+        blue: "#BDE0FE",
         orange: "#FFC09F",
         yellow: "#FFEE93",
         lime: "#FCF5C7",
