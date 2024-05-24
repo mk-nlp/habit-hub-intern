@@ -49,7 +49,7 @@ export default function AddTaskPage() {
           <X size={24} className="text-black" />
         </Button>
       </div>
-      <div className="grid col-start-2 mt-2 justify-center font-poppins font-semibold text-2xl">
+      <div className="grid col-start-2 mt-2 justify-center font-poppins font-semibold text-2xl text-nowrap">
         {tasks}
       </div>
       <div className="grid col-start-2 justify-center mt-1 font-light font-poppins text-xs text-nowrap">
