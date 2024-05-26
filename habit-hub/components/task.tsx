@@ -54,7 +54,7 @@ export default function Task({ task, category, emoji }: TaskProps) {
     setSelectedColor(selectedColor);
   }, []);
 
-  console.log("yarrak kafalı", task);
+  console.log("Muh tasks", tasks);
   console.log("EMOJİM NERDE AMINAK ODUMU COCU", emoji);
 
   return (

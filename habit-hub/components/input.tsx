@@ -4,9 +4,16 @@ import { Separator } from "./ui/separator";
 interface InputProps {
   placeholder: string;
   type: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InputComponent({ placeholder, type }: InputProps) {
+export default function InputComponent({
+  placeholder,
+  type,
+  value,
+  onChange,
+}: InputProps) {
   return (
     <div>
       <Separator
@@ -18,6 +25,8 @@ export default function InputComponent({ placeholder, type }: InputProps) {
         placeholder={placeholder}
         type={type}
         required={true}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

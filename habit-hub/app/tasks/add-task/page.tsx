@@ -8,15 +8,25 @@ import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { ChevronRight } from "lucide-react";
 import BottomBar from "@/components/bottomBar";
+import { tasksStore } from "../tasksState";
+import { useRouter } from "next/navigation";
 
 export default function AddTaskPage() {
   const tasks = AddTaskStore((state) => state.task);
   const category = AddTaskStore((state) => state.category);
-  const explanation = AddTaskStore((state) => state.explanation);
-  const task2 = AddTaskStore((state) => state.task2);
   const emoji = AddTaskStore((state) => state.emoji);
+  const [bgColor, setBgColor] = useState<string>("bg-yellow");
+  const [taskState, setTaskState] = useState(tasks);
+  const [categoryState, setCategoryState] = useState(category);
 
-  const [bgColor, setBgColor] = useState<string>("bg-yellow/60");
+  const addTaskToTaskStore = tasksStore((state) => state.addTask);
+
+  const router = useRouter();
+
+  const idGenerator = () => {
+    return Math.floor(Math.random() * 1000);
+  };
+
   const [unselectedColor, setUnselectedColor] = useState<string>("bg-gray-300");
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
   const [selectedRoutine, setSelectedRoutine] = useState<string | null>(null);
@@ -30,12 +40,27 @@ export default function AddTaskPage() {
     Sun: false,
   });
 
-  console.log("NOLUYO LAN:", bgColor);
+  const selectedDaysArray = Object.keys(selectedDays).filter(
+    (day) => selectedDays[day]
+  );
+
+  const taskToBeAdded = {
+    task: taskState,
+    category: categoryState,
+    emoji: emoji,
+    bgColor: `${bgColor}/60`,
+    selectedButton: selectedButton,
+    selectedRoutine: selectedRoutine,
+    selectedDays: selectedDaysArray,
+    id: idGenerator(), // Terrible way to generate an id btw :D
+  };
+
+  console.log(taskToBeAdded);
   const toggleDay = (day) => {
     setSelectedDays({ ...selectedDays, [day]: !selectedDays[day] });
   };
 
-  const getButtonColor = (day) => {
+  const getButtonColor = (day: string) => {
     return selectedDays[day] ? bgColor : "bg-gray-400/60";
   };
   console.log(emoji);
@@ -59,15 +84,15 @@ export default function AddTaskPage() {
       <div className="grid col-start-1 col-end-4 px-3 mt-2">
         <InputComponent
           placeholder={tasks}
-          value={tasks}
-          onChange={(e) => AddTaskStore.getState().setTask(e.target.value)}
+          value={taskState}
+          onChange={(e) => setTaskState(e.target.value)}
         />
       </div>
       <div className="grid col-start-1 col-end-4 px-3">
         <InputComponent
           placeholder={category}
-          value={category}
-          onChange={(e) => AddTaskStore.getState().setCategory(e.target.value)}
+          value={categoryState}
+          onChange={(e) => setCategoryState(e.target.value)}
         />
       </div>
       <div className="grid col-start-1 ml-4 mt-3 font-poppins font-bold text-black/80">
@@ -76,31 +101,52 @@ export default function AddTaskPage() {
       <div className="grid grid-cols-7 col-start-1 col-end-4 mt-2 justify-center justify-items-center px-5">
         <Button
           className="w-9 h-9 rounded-full bg-yellow/60 border-2 border-white hover:bg-purple"
-          onClick={() => setBgColor("bg-yellow")}
+          onClick={() => {
+            setBgColor("bg-yellow");
+            taskToBeAdded.bgColor = "bg-yellow";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-green/60 border-2 border-white"
-          onClick={() => setBgColor("bg-green")}
+          onClick={() => {
+            setBgColor("bg-green");
+            taskToBeAdded.bgColor = "bg-green";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-purple/60 border-2 border-white"
-          onClick={() => setBgColor("bg-purple")}
+          onClick={() => {
+            setBgColor("bg-purple");
+            taskToBeAdded.bgColor = "bg-purple";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-pink/60 border-2 border-white"
-          onClick={() => setBgColor("bg-pink")}
+          onClick={() => {
+            setBgColor("bg-pink");
+            taskToBeAdded.bgColor = "bg-pink";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-red-500/60 border-2 border-white"
-          onClick={() => setBgColor("bg-red-500")}
+          onClick={() => {
+            setBgColor("bg-red-500");
+            taskToBeAdded.bgColor = "bg-red-500";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-lime/60 border-2 border-white"
-          onClick={() => setBgColor("bg-lime")}
+          onClick={() => {
+            setBgColor("bg-lime");
+            taskToBeAdded.bgColor = "bg-lime";
+          }}
         ></Button>
         <Button
           className="w-9 h-9 rounded-full bg-orange/60 border-2 border-white"
-          onClick={() => setBgColor("bg-orange")}
+          onClick={() => {
+            setBgColor("bg-orange");
+            taskToBeAdded.bgColor = "bg-orange";
+          }}
         ></Button>
       </div>
       <div className="grid col-start-1 font-poppins font-bold text-black/80 ml-4 mt-3 ">
@@ -113,7 +159,7 @@ export default function AddTaskPage() {
         </div>
         <div className="grid row-start-2 grid-cols-3 bg-white font-poppins text-black/60">
           <Button
-            className={`grid col-start-1 w-32 ml-11 ${
+            className={`grid col-start-1 w-32 ml-11 hover:bg-purple ${
               selectedButton === "daily" ? bgColor : unselectedColor
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("daily")}
@@ -121,7 +167,7 @@ export default function AddTaskPage() {
             Daily
           </Button>
           <Button
-            className={`grid col-start-2 w-32 relative z-10 ${
+            className={`grid col-start-2 w-32 relative z-10 hover:bg-purple ${
               selectedButton === "weekly" ? bgColor : unselectedColor
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("weekly")}
@@ -129,7 +175,7 @@ export default function AddTaskPage() {
             Weekly
           </Button>
           <Button
-            className={`grid col-start-3 w-32 -ml-11 ${
+            className={`grid col-start-3 w-32 -ml-11 hover:bg-purple ${
               selectedButton === "monthly" ? bgColor : unselectedColor
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("monthly")}
@@ -198,7 +244,17 @@ export default function AddTaskPage() {
           </div>
         </div>
       </div>
+
       <div className="mt-11 w-[430px] ml-0">
+        <Button
+          className="w-full h-20 rounded-2xl bg-white text-black font-poppins font-bold text-2xl mb-5 hover:bg-purple hover:text-white"
+          onClick={() => {
+            addTaskToTaskStore(taskToBeAdded);
+            router.push("/tasks");
+          }}
+        >
+          Add Task
+        </Button>
         <BottomBar />
       </div>
     </div>

@@ -13,53 +13,19 @@ interface TaskProps {
 }
 
 export default function AddedTask({ id, task, category }: TaskProps) {
-  type ColorType = {
-    [key: string]: {
-      [key: string]: string;
-    };
-  };
-
-  const colors: ColorType = {
-    study: {
-      yellow: "bg-yellow/60",
-      green: "bg-green/60",
-    },
-    exercise: {
-      blue: "bg-blue/60",
-      orange: "bg-orange/60",
-    },
-    cleaning: {
-      lime: "bg-lime/60",
-      pink: "bg-pink/60",
-    },
-  };
-
   const completeTask = tasksStore((state) => state.completeTask);
   const tasks = tasksStore((state) => state.tasks);
   const isTaskCompleted = tasks.find((t) => t.id === id)?.completed;
   const emoji = tasks.find((t) => t.id === id)?.emoji;
+  const taskCategory = tasks.find((t) => t.id === id)?.category;
+  const taskColor = tasks.find((t) => t.id === id)?.bgColor;
 
-  const [selectedColor, setSelectedColor] = useState<string>("");
-
-  useEffect(() => {
-    const colorKeys = Object.keys(colors[category as keyof typeof colors]);
-    const selectedColorKey = colorKeys[(colorKeys.length * Math.random()) << 0];
-    const selectedColor =
-      colors[category as keyof typeof colors][selectedColorKey];
-    setSelectedColor(selectedColor);
-  }, []);
-
-  console.log(tasks);
-  console.log(id);
-  const colorKeys = Object.keys(colors[category as keyof typeof colors]);
-
-  const randomColorKey =
-    colorKeys[Math.floor(Math.random() * colorKeys.length)];
+  console.log("My tasks bruh", tasks);
 
   return (
     <div className="grid grid-cols-8 items-center justify-center">
       <div
-        className={`grid grid-cols-2 col-start-1 col-end-8 py-4 items-center px-3 mt-4 w-full ml-5 rounded-xl text-lg text-nowrap font-poppins ${selectedColor} ${
+        className={`grid grid-cols-2 col-start-1 col-end-8 py-4 items-center px-3 mt-4 w-full ml-5 rounded-xl text-lg text-nowrap font-poppins ${taskColor} ${
           isTaskCompleted ? "line-through" : ""
         }`}
       >
