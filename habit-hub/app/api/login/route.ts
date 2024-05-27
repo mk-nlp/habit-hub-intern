@@ -13,8 +13,7 @@ export async function POST(request: Request, response: Response) {
         return new Response(null, {
             status: 302,
             headers: {
-                Location: "/",
-                "Set-Cookie": sessionCookie.serialize()
+                "Set-Cookie": sessionCookie.serialize(),
                 },
             });
 }

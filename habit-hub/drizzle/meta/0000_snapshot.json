@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "41444a9a-e0c4-4c50-8f3f-888c2ce5c0aa",
+  "id": "b55eae65-fced-4938-9994-4142e0ace119",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "session": {
@@ -144,8 +144,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "name": {
-          "name": "name",
+        "username": {
+          "name": "username",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -158,8 +158,8 @@
           "notNull": false,
           "autoincrement": false
         },
-        "password": {
-          "name": "password",
+        "password_has": {
+          "name": "password_has",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -167,10 +167,10 @@
         }
       },
       "indexes": {
-        "user_name_unique": {
-          "name": "user_name_unique",
+        "user_username_unique": {
+          "name": "user_username_unique",
           "columns": [
-            "name"
+            "username"
           ],
           "isUnique": true
         },

@@ -20,10 +20,10 @@ CREATE TABLE `task` (
 --> statement-breakpoint
 CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
-	`name` text,
+	`username` text,
 	`email` text,
-	`password` text
+	`password_has` text
 );
 --> statement-breakpoint
-CREATE UNIQUE INDEX `user_name_unique` ON `user` (`name`);--> statement-breakpoint
+CREATE UNIQUE INDEX `user_username_unique` ON `user` (`username`);--> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);

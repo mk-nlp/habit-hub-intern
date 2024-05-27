@@ -1,12 +1,8 @@
 import { testScrypt } from "@/utils/password";
+import { NextResponse, NextRequest } from "next/server";
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: NextRequest, response: NextResponse) {
     const { password } = await request.json();
-    await testScrypt(password).then((result) => {
-        return Response.json({ success: result });
-    }
-    );
-
-
-
+    const result = await testScrypt(password);
+    return NextResponse.json(result);
 }

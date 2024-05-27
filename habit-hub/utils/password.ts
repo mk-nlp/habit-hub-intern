@@ -1,20 +1,38 @@
-import { Scrypt } from "lucia";
-
-const scrypt = new Scrypt();
-
-export const hashPassword = async (password: string) => {
-  const hash = await scrypt.hash(password);
-  return hash;
-};
-
-export const comparePassword = async (password: string, hash: string) => {
-  const result = await scrypt.verify(password, hash);
-  return result;
-};
+import { scrypt } from "crypto";
 
 export const testScrypt = async (password: string) => {
-    const scrypt = new Scrypt();
-    const hash = await scrypt.hash(password);
-    const result = await scrypt.verify(password, hash);
-    console.log(result); // Should log true
-  };
+    return new Promise((resolve, reject) => {
+        scrypt(password, "salt", 64, (err, key) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(key.toString("hex"));
+            }
+        });
+    });
+}
+
+export const hashPassword = async (password: string) => {
+    return new Promise((resolve, reject) => {
+        scrypt(password, "salt", 64, (err, key) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(key.toString("hex"));
+            }
+        });
+    });
+}
+
+export const verifyPassword = async (hash: string, password: string) => {
+    return new Promise((resolve, reject) => {
+        scrypt(password, "salt", 64, (err, key) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(key.toString("hex") === hash);
+            }
+        });
+    });
+}
+

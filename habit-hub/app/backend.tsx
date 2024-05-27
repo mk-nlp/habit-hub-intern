@@ -3,20 +3,37 @@ import Database from "better-sqlite3";
 import * as schema from "../schema";
 import { eq, and } from "drizzle-orm";
 import { get } from "http";
-import { hashPassword, comparePassword } from "@/utils/password";
+import { hashPassword, verifyPassword } from "@/utils/password";
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { user, session } from "../schema";
+import { hash } from "crypto";
 const sqlite = new Database("test.db");
 const db = drizzle(sqlite, { schema });
+
+export const IdGenerator = () => {
+  return Math.floor(Math.random() * 100000000).toString();
+};
+
+export const getSession = async (id: string) => {
+  const session = await db
+    .select()
+    .from(schema.session)
+    .where(eq(schema.session.userId, id));
+  return session;
+};
+
+export const logOut = async (id: string) => {
+  await db.delete(schema.session).where(eq(schema.session.userId, id));
+};
 
 export const addUser = async (
   username: string,
   email: string,
   password: string
 ) => {
-  const hash = await hashPassword(password);
+  const hash = (await hashPassword(password)) as string;
   await db.insert(schema.user).values({
-    id: Math.random().toString(36).substring(7),
+    id: IdGenerator(),
     username,
     email,
     password_hash: hash,
@@ -40,12 +57,11 @@ export const logInUser = async (email: string, password: string) => {
   if (!user || !user[0].password_hash) {
     return null;
   }
-  const result = await comparePassword(password, user[0].password_hash);
-  console.log("RESULT", result);
-  if (!result) {
-    return null;
+  const isValid = (await hashPassword(password)) === user[0].password_hash;
+  if (isValid) {
+    return user;
   }
-  return user;
+  return null;
 };
 
 export const getUserFromDb = async (email: string, password: string) => {
