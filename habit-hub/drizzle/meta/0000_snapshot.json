@@ -1,9 +1,53 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "ed63bca1-0877-4e91-9cf9-1239dacaa164",
+  "id": "41444a9a-e0c4-4c50-8f3f-888c2ce5c0aa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "session": {
+      "name": "session",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_userId_user_id_fk": {
+          "name": "session_userId_user_id_fk",
+          "tableFrom": "session",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "task": {
       "name": "task",
       "columns": {
@@ -73,10 +117,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "task_userId_user_id_fk": {
-          "name": "task_userId_user_id_fk",
+        "task_userId_session_id_fk": {
+          "name": "task_userId_session_id_fk",
           "tableFrom": "task",
-          "tableTo": "user",
+          "tableTo": "session",
           "columnsFrom": [
             "userId"
           ],
@@ -95,7 +139,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": false

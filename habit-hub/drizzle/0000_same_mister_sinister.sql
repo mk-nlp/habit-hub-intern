@@ -1,3 +1,10 @@
+CREATE TABLE `session` (
+	`id` text PRIMARY KEY NOT NULL,
+	`userId` text NOT NULL,
+	`expiresAt` integer NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `task` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`task` text,
@@ -8,11 +15,11 @@ CREATE TABLE `task` (
 	`date` text,
 	`userId` integer,
 	`completed` integer,
-	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`userId`) REFERENCES `session`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `user` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` text PRIMARY KEY NOT NULL,
 	`name` text,
 	`email` text,
 	`password` text
