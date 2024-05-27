@@ -55,7 +55,6 @@ export default function AddTaskPage() {
     id: idGenerator(), // Terrible way to generate an id btw :D
   };
 
-  console.log(taskToBeAdded);
   const toggleDay = (day) => {
     setSelectedDays({ ...selectedDays, [day]: !selectedDays[day] });
   };
@@ -63,7 +62,6 @@ export default function AddTaskPage() {
   const getButtonColor = (day: string) => {
     return selectedDays[day] ? bgColor : "bg-gray-400/60";
   };
-  console.log(emoji);
 
   return (
     <div className={`grid grid-cols-3  ${bgColor}/60`}>

@@ -43,7 +43,6 @@ export default function Task({ task, category, emoji }: TaskProps) {
   const tasks = tasksStore((state) => state.tasks);
   const addTaskToCreator = AddTaskStore((state) => state.addTaskToCreator);
   const CreatorTasks = AddTaskStore((state) => state.tasks);
-  console.log("Creator tasks", CreatorTasks);
   const [selectedColor, setSelectedColor] = useState<string>("");
 
   useEffect(() => {
@@ -53,9 +52,6 @@ export default function Task({ task, category, emoji }: TaskProps) {
       colors[category as keyof typeof colors][selectedColorKey];
     setSelectedColor(selectedColor);
   }, []);
-
-  console.log("Muh tasks", tasks);
-  console.log("EMOJİM NERDE AMINAK ODUMU COCU", emoji);
 
   return (
     <div className="grid grid-cols-8 col-start-1 col-end-9">

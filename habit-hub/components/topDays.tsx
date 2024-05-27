@@ -12,8 +12,6 @@ export default function TopDays() {
   const datesOfWeek = daysStore((state) => state.datesOfWeek);
   const days = daysStore((state) => state.days);
 
-  console.log("Days of week", day);
-
   return (
     <div className="grid grid-cols-4 bg-pink/60 h-40">
       <div className="grid col-start-2 col-end-4 justify-center mt-5 font-poppins font-bold">

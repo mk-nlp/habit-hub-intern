@@ -8,7 +8,6 @@ export default function SuggestionButton(task, category, emoji, taskId) {
   const addTaskToCreator = AddTaskStore((state) => state.addTaskToCreator);
   const router = useRouter();
 
-  console.log("ANANI SİKECEM AMA", emoji);
   return (
     <div>
       <Button

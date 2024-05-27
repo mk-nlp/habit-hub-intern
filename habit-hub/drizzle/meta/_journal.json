@@ -1,0 +1,13 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1716821370606,
+      "tag": "0000_absent_secret_warriors",
+      "breakpoints": true
+    }
+  ]
+}

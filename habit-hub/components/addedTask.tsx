@@ -20,8 +20,6 @@ export default function AddedTask({ id, task, category }: TaskProps) {
   const taskCategory = tasks.find((t) => t.id === id)?.category;
   const taskColor = tasks.find((t) => t.id === id)?.bgColor;
 
-  console.log("My tasks bruh", tasks);
-
   return (
     <div className="grid grid-cols-8 items-center justify-center">
       <div
