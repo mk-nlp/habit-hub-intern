@@ -10,6 +10,8 @@ import { ChevronRight } from "lucide-react";
 import BottomBar from "@/components/bottomBar";
 import { tasksStore } from "../tasksState";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { validateSession } from "@/utils/validate-session-client";
 
 export default function AddTaskPage() {
   const tasks = AddTaskStore((state) => state.task);
@@ -63,6 +65,24 @@ export default function AddTaskPage() {
     return selectedDays[day] ? bgColor : "bg-gray-400/60";
   };
 
+  useEffect(() => {
+    validateSession().then((data) => {
+      if (data.success === false) {
+        if (window.location.pathname === "/") {
+          return;
+        }
+        router.push("/login");
+      }
+      if (data.success === true) {
+        if (
+          window.location.pathname === "/login" ||
+          window.location.pathname === "/"
+        ) {
+          router.push("/tasks");
+        }
+      }
+    });
+  }, []);
   return (
     <div className={`grid grid-cols-3  ${bgColor}/60`}>
       <div className="grid col-start-2 justify-center text-8xl mt-8">

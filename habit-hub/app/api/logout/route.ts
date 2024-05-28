@@ -6,7 +6,6 @@ import { validateSession } from "@/utils/validate-session";
 
 export async function POST(request: NextRequest, response: NextResponse) {
     const validationResponse = await validateSession(request);
-    console.log("VALIDATION RESPONSEUM DA RESPONSUM!", validationResponse);
     if (validationResponse.status !== 200) {
         return NextResponse.json({ success: false, message: 'Invalid session or origin' });
     }

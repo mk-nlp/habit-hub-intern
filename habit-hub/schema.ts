@@ -16,14 +16,14 @@ export const session = sqliteTable("session", {
 });
 
 export const task = sqliteTable("task", {
-  id: integer("id").primaryKey(),
+  id: text("id").primaryKey(),
   task: text("task"),
   category: text("category"),
   emoji: text("emoji"),
   bgColor: text("bgColor"),
   routine: text("routine"),
   date: text("date"),
-  userId: integer("userId").references(() => session.id),
+  userId: text("userId").references(() => user.id),
   completed : integer("completed", { mode: "boolean"})
 });
 

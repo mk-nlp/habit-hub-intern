@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "b55eae65-fced-4938-9994-4142e0ace119",
+  "id": "95952caa-79e0-4717-89e2-657afaa54bce",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "session": {
@@ -102,7 +102,7 @@
         },
         "userId": {
           "name": "userId",
-          "type": "integer",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -117,10 +117,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "task_userId_session_id_fk": {
-          "name": "task_userId_session_id_fk",
+        "task_userId_user_id_fk": {
+          "name": "task_userId_user_id_fk",
           "tableFrom": "task",
-          "tableTo": "session",
+          "tableTo": "user",
           "columnsFrom": [
             "userId"
           ],

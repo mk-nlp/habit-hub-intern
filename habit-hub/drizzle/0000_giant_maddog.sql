@@ -13,9 +13,9 @@ CREATE TABLE `task` (
 	`bgColor` text,
 	`routine` text,
 	`date` text,
-	`userId` integer,
+	`userId` text,
 	`completed` integer,
-	FOREIGN KEY (`userId`) REFERENCES `session`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `user` (

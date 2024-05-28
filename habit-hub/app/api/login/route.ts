@@ -4,9 +4,9 @@ import { lucia } from "@/auth";
 export async function POST(request: Request, response: Response) {
     const { email, password } = await request.json();
         const user = await logInUser(email, password);
-        console.log("LOGIN LOGU", user);
+       
         if (!user) {
-            return Response.json({ Error: "Invalid username as password" });
+            return Response.json({ Error: "Invalid username or password" });
         }
         const session = await lucia.createSession(user[0].id, {});
         const sessionCookie = lucia.createSessionCookie(session.id);

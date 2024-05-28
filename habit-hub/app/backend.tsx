@@ -7,6 +7,7 @@ import { hashPassword, verifyPassword } from "@/utils/password";
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { user, session } from "../schema";
 import { hash } from "crypto";
+import { error } from "console";
 const sqlite = new Database("test.db");
 const db = drizzle(sqlite, { schema });
 
@@ -49,19 +50,24 @@ export const getUserByName = async (name: string) => {
 };
 
 export const logInUser = async (email: string, password: string) => {
-  const user = await db
-    .select()
-    .from(schema.user)
-    .where(eq(schema.user.email, email));
-  console.log("USER", user);
-  if (!user || !user[0].password_hash) {
-    return null;
+  try {
+    const user = await db
+      .select()
+      .from(schema.user)
+      .where(eq(schema.user.email, email));
+    console.log("USER", user);
+    if (!user || !user[0].password_hash) {
+      return false;
+    }
+    const isValid = (await hashPassword(password)) === user[0].password_hash;
+    if (isValid) {
+      return user;
+    }
+    return false;
+  } catch (error) {
+    console.error("Error logging in user:", error);
+    return false;
   }
-  const isValid = (await hashPassword(password)) === user[0].password_hash;
-  if (isValid) {
-    return user;
-  }
-  return null;
 };
 
 export const getUserFromDb = async (email: string, password: string) => {
@@ -74,6 +80,27 @@ export const getUserFromDb = async (email: string, password: string) => {
   return user;
 };
 
+export const findUserFromSession = async (sessionId: string) => {
+  const session = await db
+    .select()
+    .from(schema.session)
+    .where(eq(schema.session.id, sessionId));
+  const user = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.id, session[0].userId));
+  console.log("USER", user[0].id);
+  return user[0].id;
+};
+
+export const findUserTasks = async (userId: string) => {
+  const tasks = await db
+    .select()
+    .from(schema.task)
+    .where(eq(schema.task.userId, userId));
+  return tasks;
+};
+
 export const createTask = async (
   task: string,
   category: string,
@@ -81,9 +108,10 @@ export const createTask = async (
   bgColor: string,
   routine: string,
   date: string,
-  userId: number
+  userId: string
 ) => {
   await db.insert(schema.task).values({
+    id: IdGenerator(),
     task,
     category,
     emoji,
@@ -91,14 +119,19 @@ export const createTask = async (
     routine,
     date,
     userId,
+    completed: false,
   });
+  console.log("TASK CREATED", task);
+  console.log("USER ID", userId);
 };
 
-export const getTasks = async (userId: number) => {
+export const getTasks = async (userId: string) => {
   const tasks = await db
     .select()
     .from(schema.task)
     .where(eq(schema.task.userId, userId));
+
+  console.log("TASKS", tasks);
   return tasks;
 };
 

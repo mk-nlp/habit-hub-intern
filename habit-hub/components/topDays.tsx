@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { useRef } from "react";
 import { daysStore } from "@/app/tasks/daysState";
+import { useEffect } from "react";
+import { validateSession } from "@/utils/validate-session-client";
+import { useRouter } from "next/navigation";
 
 export default function TopDays() {
   const day = daysStore((state) => state.day);
@@ -11,6 +14,27 @@ export default function TopDays() {
   const setSelectedDay = daysStore((state) => state.setSelectedDay);
   const datesOfWeek = daysStore((state) => state.datesOfWeek);
   const days = daysStore((state) => state.days);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    validateSession().then((data) => {
+      if (data.success === false) {
+        if (window.location.pathname === "/") {
+          return;
+        }
+        router.push("/login");
+      }
+      if (data.success === true) {
+        if (
+          window.location.pathname === "/login" ||
+          window.location.pathname === "/"
+        ) {
+          router.push("/tasks");
+        }
+      }
+    });
+  }, []);
 
   return (
     <div className="grid grid-cols-4 bg-pink/60 h-40">

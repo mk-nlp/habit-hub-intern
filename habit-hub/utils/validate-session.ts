@@ -2,7 +2,7 @@ import { verifyRequestOrigin } from "lucia";
 import { lucia } from "@/auth";
 
 const getHeaders = (request: Request) => ({
-    origin: request.headers.get("Origin"),
+    origin: request.headers.get("X-Custom-Origin"),
     host: request.headers.get("Host"),
     cookie: request.headers.get("Cookie"),
   });
@@ -50,7 +50,6 @@ const getHeaders = (request: Request) => ({
         appendCookieToHeaders(headers, null, lucia.createBlankSessionCookie);
       }
   
-    console.log("SESSION", session, user, headers);
     // Use the headers object in the final response
     return createResponse(200, headers);
   }
