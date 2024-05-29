@@ -15,10 +15,15 @@ interface TaskProps {
 export default function AddedTask({ id, task, category }: TaskProps) {
   const completeTask = tasksStore((state) => state.completeTask);
   const tasks = tasksStore((state) => state.tasks);
-  const isTaskCompleted = tasks.find((t) => t.id === id)?.completed;
-  const emoji = tasks.find((t) => t.id === id)?.emoji;
-  const taskCategory = tasks.find((t) => t.id === id)?.category;
-  const taskColor = tasks.find((t) => t.id === id)?.bgColor;
+  const taskColor = tasks && tasks.find((t) => t.id === id)?.bgColor;
+  const taskCategory = tasks && tasks.find((t) => t.id === id)?.category;
+  const emoji = tasks && tasks.find((t) => t.id === id)?.emoji;
+  const isTaskCompleted = tasks && tasks.find((t) => t.id === id)?.completed;
+
+  console.log("TASKS", tasks);
+  console.log("TASK COLOR", taskColor);
+  console.log("TASK CATEGORY", taskCategory);
+  console.log("TASK EMOJI", emoji);
 
   return (
     <div className="grid grid-cols-8 items-center justify-center">

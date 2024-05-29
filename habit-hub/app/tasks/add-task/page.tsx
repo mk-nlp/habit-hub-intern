@@ -51,10 +51,113 @@ export default function AddTaskPage() {
     category: categoryState,
     emoji: emoji,
     bgColor: `${bgColor}/60`,
-    selectedButton: selectedButton,
-    selectedRoutine: selectedRoutine,
-    selectedDays: selectedDaysArray,
-    id: idGenerator(), // Terrible way to generate an id btw :D
+    routine: selectedButton,
+    date: selectedDaysArray,
+  };
+
+  const today = new Date();
+
+  const preciseDate = today.toISOString().split("T")[0];
+
+  const preciseDatesOfSelectedDays = selectedDaysArray.map((day) => {
+    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+      day
+    );
+    const date = new Date(today);
+    date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7));
+    return date.toISOString().split("T")[0];
+  });
+
+  const loopTasks = () => {
+    for (let i = 0; i < preciseDatesOfSelectedDays.length; i++) {
+      const task = {
+        task: taskState,
+        category: categoryState,
+        emoji: emoji,
+        bgColor: `${bgColor}/60`,
+        routine: selectedButton,
+        date: preciseDatesOfSelectedDays[i],
+      };
+      async function addTask() {
+        await fetch("/api/task-add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Custom-Origin": "http://localhost:3000",
+          },
+          body: JSON.stringify(task),
+        });
+      }
+      addTask();
+    }
+  };
+
+  const increaseSelectedDaysWeekly = selectedDaysArray.map((day) => {
+    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+      day
+    );
+    const date = new Date(today);
+    date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7) * 7);
+    return date.toISOString().split("T")[0];
+  });
+
+  console.log("WEEKLY BRUH", increaseSelectedDaysWeekly);
+
+  const loopTasksWeekly = () => {
+    for (let i = 0; i < increaseSelectedDaysWeekly.length; i++) {
+      const task = {
+        task: taskState,
+        category: categoryState,
+        emoji: emoji,
+        bgColor: `${bgColor}/60`,
+        routine: selectedButton,
+        date: increaseSelectedDaysWeekly[i],
+      };
+      async function addTask() {
+        await fetch("/api/task-add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Custom-Origin": "http://localhost:3000",
+          },
+          body: JSON.stringify(task),
+        });
+      }
+      addTask();
+    }
+  };
+
+  const increaseSelectedDaysMonthly = selectedDaysArray.map((day) => {
+    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+      day
+    );
+    const date = new Date(today);
+    date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7) * 30);
+    return date.toISOString().split("T")[0];
+  });
+
+  const loopTasksMonthly = () => {
+    for (let i = 0; i < increaseSelectedDaysMonthly.length; i++) {
+      const task = {
+        task: taskState,
+        category: categoryState,
+        emoji: emoji,
+        bgColor: `${bgColor}/60`,
+        routine: selectedButton,
+        date: increaseSelectedDaysMonthly[i],
+      };
+      async function addTask() {
+        await fetch("/api/task-add", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Custom-Origin": "http://localhost:3000",
+          },
+          body: JSON.stringify(task),
+        });
+      }
+      addTask();
+    }
   };
 
   const toggleDay = (day) => {
@@ -266,9 +369,19 @@ export default function AddTaskPage() {
       <div className="mt-11 w-[430px] ml-0">
         <Button
           className="w-full h-20 rounded-2xl bg-white text-black font-poppins font-bold text-2xl mb-5 hover:bg-purple hover:text-white"
-          onClick={() => {
-            addTaskToTaskStore(taskToBeAdded);
-            router.push("/tasks");
+          onClick={async () => {
+            if (selectedButton === "daily") {
+              await loopTasks();
+              router.push("/tasks");
+            }
+            if (selectedButton === "weekly") {
+              await loopTasksWeekly();
+              router.push("/tasks");
+            }
+            if (selectedButton === "monthly") {
+              await loopTasksMonthly();
+              router.push("/tasks");
+            }
           }}
         >
           Add Task

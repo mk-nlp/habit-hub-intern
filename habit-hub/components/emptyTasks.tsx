@@ -5,9 +5,48 @@ import { tasksStore } from "@/app/tasks/tasksState";
 import AddedTask from "./addedTask";
 import BottomBar from "@/components/bottomBar";
 import PlusButton from "@/components/plusButton";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { LoaderCircle } from "lucide-react";
 
 export default function EmptyTasks() {
   const tasks = tasksStore((state) => state.tasks);
+  const addTask = tasksStore((state) => state.addTask);
+  const [loading, setLoading] = useState(false);
+
+  async function fetchTasks() {
+    setLoading(true);
+    const response = await fetch("/api/get-task", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Custom-Origin": "http://localhost:3000",
+      },
+    });
+    const data = await response.json();
+    for (const task of data) {
+      addTask(task);
+    }
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full mt-12">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity }}
+        >
+          <LoaderCircle className="text-purple" size={120} />
+        </motion.div>
+        <div className="text-lg mt-2 font-poppins font-bold">Loading...</div>
+      </div>
+    );
+  }
 
   if (tasks.length > 0) {
     return (

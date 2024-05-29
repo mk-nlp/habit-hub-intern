@@ -6,7 +6,7 @@ CREATE TABLE `session` (
 );
 --> statement-breakpoint
 CREATE TABLE `task` (
-	`id` integer PRIMARY KEY NOT NULL,
+	`id` text PRIMARY KEY NOT NULL,
 	`task` text,
 	`category` text,
 	`emoji` text,
