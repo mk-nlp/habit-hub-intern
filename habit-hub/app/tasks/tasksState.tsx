@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const tasksStore = create((set) => ({
   tasks: [],
   setTasks: (tasks) => set({ tasks }),
-  addTask: (task) => set((state) => ({ tasks: [...state.tasks, task] })),
+  addTask: (task) => set((state) => ({ tasks: [...state.tasks, task].flat() })),
   removeTask: (task) =>
     set((state) => ({
       tasks: state.tasks.filter((t) => t.id !== task.id),
@@ -19,4 +19,5 @@ export const tasksStore = create((set) => ({
       return { tasks: newTasks };
     });
   },
+  emptyTasks: () => set({ tasks: [] }),
 }));

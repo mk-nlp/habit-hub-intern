@@ -9,6 +9,15 @@ const datesOfWeek = days.map((_, i) => {
   newDate.setDate(startOfWeek + i);
   return newDate.getDate();
 });
+const preciseDatesOfWeek = days.map((_, i) => {
+  const newDate = new Date(today);
+  newDate.setDate(startOfWeek + i);
+  return newDate.toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+});
 
 export const daysStore = create((set) => ({
   day: day as string,
@@ -16,4 +25,5 @@ export const daysStore = create((set) => ({
   setSelectedDay: (d: string) => set({ selectedDay: d }),
   datesOfWeek: datesOfWeek as number[],
   days: days as string[],
+  preciseDatesOfWeek: preciseDatesOfWeek as string[],
 }));

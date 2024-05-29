@@ -135,4 +135,20 @@ export const getTasks = async (userId: string) => {
   return tasks;
 };
 
+export const getTaskByDate = async (userId: string, date: string) => {
+  const tasks = await db
+    .select()
+    .from(schema.task)
+    .where(and(eq(schema.task.userId, userId), eq(schema.task.date, date)));
+
+  return tasks;
+};
+
+export const completeTask = async (taskId: string) => {
+  await db
+    .update(schema.task)
+    .set({ completed: true })
+    .where(eq(schema.task.id, taskId));
+};
+
 export const adapter = new DrizzleSQLiteAdapter(db, session, user);

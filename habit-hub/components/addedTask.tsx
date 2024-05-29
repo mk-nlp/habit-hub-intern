@@ -20,6 +20,19 @@ export default function AddedTask({ id, task, category }: TaskProps) {
   const emoji = tasks && tasks.find((t) => t.id === id)?.emoji;
   const isTaskCompleted = tasks && tasks.find((t) => t.id === id)?.completed;
 
+  async function completeTaskBackend(taskId: string) {
+    const response = await fetch("/api/complete-task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Custom-Origin": "http://localhost:3000",
+      },
+      body: JSON.stringify({
+        taskId,
+      }),
+    });
+  }
+
   console.log("TASKS", tasks);
   console.log("TASK COLOR", taskColor);
   console.log("TASK CATEGORY", taskCategory);
@@ -37,6 +50,7 @@ export default function AddedTask({ id, task, category }: TaskProps) {
           className={`bg-ash rounded-full w-9 h-9 border-2 border-gray-300 justify-self-end hover:bg-purple hover:border-purple`}
           onClick={() => {
             completeTask(id);
+            completeTaskBackend(id.toString());
           }}
         >
           {isTaskCompleted ? (

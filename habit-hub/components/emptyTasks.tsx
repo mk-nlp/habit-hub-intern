@@ -30,10 +30,6 @@ export default function EmptyTasks() {
     setLoading(false);
   }
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center h-full mt-12">
@@ -49,6 +45,7 @@ export default function EmptyTasks() {
   }
 
   if (tasks.length > 0) {
+    console.log("TASKS RENDER ERA", tasks);
     return (
       <div className="grid grid-cols-1">
         {tasks.map((task) => (
