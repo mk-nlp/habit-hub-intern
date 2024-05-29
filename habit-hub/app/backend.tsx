@@ -149,6 +149,8 @@ export const completeTask = async (taskId: string) => {
     .update(schema.task)
     .set({ completed: true })
     .where(eq(schema.task.id, taskId));
+
+  return "Task completed successfully";
 };
 
 export const adapter = new DrizzleSQLiteAdapter(db, session, user);

@@ -60,7 +60,7 @@ export default function AddTaskPage() {
   const preciseDate = today.toISOString().split("T")[0];
 
   const preciseDatesOfSelectedDays = selectedDaysArray.map((day) => {
-    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
       day
     );
     const date = new Date(today);
@@ -93,15 +93,13 @@ export default function AddTaskPage() {
   };
 
   const increaseSelectedDaysWeekly = selectedDaysArray.map((day) => {
-    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
       day
     );
     const date = new Date(today);
     date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7) * 7);
     return date.toISOString().split("T")[0];
   });
-
-  console.log("WEEKLY BRUH", increaseSelectedDaysWeekly);
 
   const loopTasksWeekly = () => {
     for (let i = 0; i < increaseSelectedDaysWeekly.length; i++) {
@@ -128,7 +126,7 @@ export default function AddTaskPage() {
   };
 
   const increaseSelectedDaysMonthly = selectedDaysArray.map((day) => {
-    const dayIndex = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(
+    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
       day
     );
     const date = new Date(today);
@@ -159,6 +157,10 @@ export default function AddTaskPage() {
       addTask();
     }
   };
+
+  console.log("WEEKLY BRUH", increaseSelectedDaysWeekly);
+  console.log("DAİLY BRUH", preciseDatesOfSelectedDays);
+  console.log("MONTHLY BRUH", increaseSelectedDaysMonthly);
 
   const toggleDay = (day) => {
     setSelectedDays({ ...selectedDays, [day]: !selectedDays[day] });
