@@ -10,17 +10,18 @@ import { useRouter } from "next/navigation";
 import { tasksStore } from "@/app/tasks/tasksState";
 
 export default function TopDays() {
-  const day = daysStore((state) => state.day);
-  const selectedDay = daysStore((state) => state.selectedDay);
-  const setSelectedDay = daysStore((state) => state.setSelectedDay);
-  const datesOfWeek = daysStore((state) => state.datesOfWeek);
-  const days = daysStore((state) => state.days);
-  const preciseDatesOfWeek = daysStore((state) => state.preciseDatesOfWeek);
-  const tasks = tasksStore((state) => state.tasks);
-  const addTask = tasksStore((state) => state.addTask);
-  const emptyTasks = tasksStore((state) => state.emptyTasks);
+  const day = daysStore((state: any) => state.day);
+  const selectedDay = daysStore((state: any) => state.selectedDay);
+  const setSelectedDay = daysStore((state: any) => state.setSelectedDay);
+  const datesOfWeek = daysStore((state: any) => state.datesOfWeek);
+  const days = daysStore((state: any) => state.days);
+  const preciseDatesOfWeek = daysStore(
+    (state: any) => state.preciseDatesOfWeek
+  );
+  const tasks = tasksStore((state: any) => state.tasks);
+  const addTask = tasksStore((state: any) => state.addTask);
+  const emptyTasks = tasksStore((state: any) => state.emptyTasks);
 
-  console.log("SELECTED DAY PRECISE", preciseDatesOfWeek);
   const router = useRouter();
 
   const getTaskByDate = async (date: string) => {
@@ -28,14 +29,12 @@ export default function TopDays() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
       },
     });
     const data = await response.json();
-    console.log("DATA", data);
     addTask(data);
   };
-  console.log("DAY NE DAY", day);
 
   useEffect(() => {
     validateSession().then((data) => {
@@ -63,17 +62,13 @@ export default function TopDays() {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("İKİ KERE Mİ BASIYORUM!!!");
-  }, [selectedDay]);
-
   return (
     <div className="grid grid-cols-4 bg-pink/60 h-40">
       <div className="grid col-start-2 col-end-4 justify-center mt-5 font-poppins font-bold">
         {selectedDay === day ? "Today" : selectedDay}
       </div>
       <div className="grid grid-cols-7 col-start-1 col-end-5 mb-6 font-poppins font-bold items-center gap-2 p-0.5">
-        {days.map((d, i) => (
+        {days.map((d: any, i: any) => (
           <Button
             ref={d === day ? buttonRef : null}
             key={d}

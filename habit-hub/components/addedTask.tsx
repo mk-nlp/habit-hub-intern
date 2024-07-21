@@ -13,30 +13,26 @@ interface TaskProps {
 }
 
 export default function AddedTask({ id, task, category }: TaskProps) {
-  const completeTask = tasksStore((state) => state.completeTask);
-  const tasks = tasksStore((state) => state.tasks);
-  const taskColor = tasks && tasks.find((t) => t.id === id)?.bgColor;
-  const taskCategory = tasks && tasks.find((t) => t.id === id)?.category;
-  const emoji = tasks && tasks.find((t) => t.id === id)?.emoji;
-  const isTaskCompleted = tasks && tasks.find((t) => t.id === id)?.completed;
+  const completeTask = tasksStore((state: any) => state.completeTask);
+  const tasks = tasksStore((state: any) => state.tasks);
+  const taskColor = tasks && tasks.find((t: any) => t.id === id)?.bgColor;
+  const taskCategory = tasks && tasks.find((t: any) => t.id === id)?.category;
+  const emoji = tasks && tasks.find((t: any) => t.id === id)?.emoji;
+  const isTaskCompleted =
+    tasks && tasks.find((t: any) => t.id === id)?.completed;
 
   async function completeTaskBackend(taskId: string) {
     const response = await fetch("/api/complete-task", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
       },
       body: JSON.stringify({
         taskId,
       }),
     });
   }
-
-  console.log("TASKS", tasks);
-  console.log("TASK COLOR", taskColor);
-  console.log("TASK CATEGORY", taskCategory);
-  console.log("TASK EMOJI", emoji);
 
   return (
     <div className="grid grid-cols-8 items-center justify-center">

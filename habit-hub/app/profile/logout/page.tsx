@@ -7,8 +7,8 @@ export default function Logout() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
-        Host: "http://localhost:3000",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
+        Host: process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
       },
       body: JSON.stringify({}),
     });

@@ -35,7 +35,7 @@ export async function GET(request: Request) {
             return new Response(null, {
                 status: 302,
                 headers: {
-                    Location: "/",
+                    Location: "/tasks",
                     "Set-Cookie": sessionCookie.serialize()
                 }
             });
@@ -48,12 +48,11 @@ export async function GET(request: Request) {
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: "/",
+				Location: "/tasks",
 				"Set-Cookie": sessionCookie.serialize()
 			}
 		});
 	} catch (e) {
-		console.log(e);
 		if (e instanceof OAuth2RequestError) {
 			// bad verification code, invalid credentials, etc
 			return new Response(null, {

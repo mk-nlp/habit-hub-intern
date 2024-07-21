@@ -7,11 +7,12 @@ import BottomBar from "@/components/bottomBar";
 import PlusButton from "@/components/plusButton";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Skeleton } from "./ui/skeleton";
 import { LoaderCircle } from "lucide-react";
 
 export default function EmptyTasks() {
-  const tasks = tasksStore((state) => state.tasks);
-  const addTask = tasksStore((state) => state.addTask);
+  const tasks = tasksStore((state: any) => state.tasks);
+  const addTask = tasksStore((state: any) => state.addTask);
   const [loading, setLoading] = useState(false);
 
   async function fetchTasks() {
@@ -20,8 +21,7 @@ export default function EmptyTasks() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
-      },
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
     });
     const data = await response.json();
     for (const task of data) {
@@ -45,10 +45,9 @@ export default function EmptyTasks() {
   }
 
   if (tasks.length > 0) {
-    console.log("TASKS RENDER ERA", tasks);
     return (
       <div className="grid grid-cols-1">
-        {tasks.map((task) => (
+        {tasks.map((task: any) => (
           <AddedTask
             key={task.id}
             task={task.task}

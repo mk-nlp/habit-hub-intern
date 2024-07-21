@@ -8,7 +8,7 @@ const getHeaders = (request: Request) => ({
   });
   
   const verifyOrigin = (origin: string, host: string) => 
-    origin && host && verifyRequestOrigin(origin, [host]);
+    origin && host && verifyRequestOrigin(origin, [host, "https://habithub.linuxoyun.com", "http://localhost:3000", "http://192.168.2.101"]);
   
   const getSessionId = (cookie: string) => lucia.readSessionCookie(cookie ?? "");
   
@@ -26,9 +26,6 @@ const getHeaders = (request: Request) => ({
   export async function validateSession(request: Request) {
     const { origin,  host, cookie } = getHeaders(request);
 
-    console.log("ORIGIN", origin);
-    console.log("HOST", host);
-    console.log("COOKIE", cookie);
     
     if (!verifyOrigin(origin!, host!)) {
         return createResponse(403);

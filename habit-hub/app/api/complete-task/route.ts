@@ -9,7 +9,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
         return NextResponse.json({ success: false, message: 'Invalid session or origin' });
     }
     const {taskId} = await request.json();
-    console.log("ID", taskId);
     const tasks = await completeTask(taskId);
     return NextResponse.json(tasks);
 }

@@ -10,7 +10,7 @@ export async function POST(request: Request, response: Response) {
         }
         const session = await lucia.createSession(user.id, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
-        return new Response(null, {
+        return new Response(JSON.stringify({ message: "Logged in successfully" }), {
             status: 302,
             headers: {
                 "Set-Cookie": sessionCookie.serialize(),

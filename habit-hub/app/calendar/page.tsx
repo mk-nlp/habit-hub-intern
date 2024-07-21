@@ -25,14 +25,12 @@ export default function CalendarPage() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
       },
     });
     const data = await response.json();
-    console.log("DATA", data);
     addTask(data);
   };
-  console.log("DAY NE DAY", day);
 
   useEffect(() => {
     validateSession().then((data) => {
@@ -63,9 +61,7 @@ export default function CalendarPage() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const dateString = date?.toISOString().split("T")[0];
-  useEffect(() => {
-    console.log("HANGİ GÜNÜ SEÇTİM", dateString);
-  });
+  useEffect(() => {});
 
   useEffect(() => {
     emptyTasks();

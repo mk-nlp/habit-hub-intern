@@ -3,8 +3,8 @@ export async function validateSession() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "X-Custom-Origin": "http://localhost:3000",
-        Host: "http://localhost:3000",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
+        Host: process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
       },
     });
     const data = await response.json();

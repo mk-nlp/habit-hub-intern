@@ -33,7 +33,10 @@ export default function ProfilePage() {
         Profile
       </div>
       <div className="grid col-start-1 mr-5 gap-8 rounded-xl col-end-5 ">
-        <ProfileButton buttontext="Account" buttonurl="/tasks" />
+        <ProfileButton
+          buttontext="Account"
+          buttonurl="/profile/profile-details"
+        />
         <ProfileButton buttontext="Notifications" buttonurl="/profile" />
         <ProfileButton buttontext="Help" buttonurl="/profile" />
         <ProfileButton buttontext="Storage and data" buttonurl="/profile" />

@@ -9,12 +9,13 @@ import { Input } from "postcss";
 import { LoginUser } from "@/utils/login";
 import { loginStore } from "./loginState";
 import { log } from "console";
+import { SigninForm } from "@/components/signInForm";
 
 export default function LoginPage() {
-  const setEmail = loginStore((state) => state.setEmail);
-  const setPassword = loginStore((state) => state.setPassword);
-  const email = loginStore((state) => state.email);
-  const password = loginStore((state) => state.password);
+  const setEmail = loginStore((state: any) => state.setEmail);
+  const setPassword = loginStore((state: any) => state.setPassword);
+  const email = loginStore((state: any) => state.email);
+  const password = loginStore((state: any) => state.password);
 
   return (
     <div>
@@ -29,28 +30,8 @@ export default function LoginPage() {
         <div className="grid col-start-2 col-end-4 mt-5 justify-center z-50">
           <MultiOptionSignOn orientation="down" />
         </div>
-        <div className="grid col-start-1 col-end-5 mt-20 p-5 z-10">
-          <InputComponent
-            placeholder="Email"
-            type={"email"}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <InputComponent
-            placeholder="Password"
-            type={"password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="grid col-start-2 col-end-4 mt-16 z-10">
-          <ButtonComponent
-            buttontext="Login"
-            buttonurl="/login/agreement"
-            email={email}
-            password={password}
-            buttonFunction={LoginUser}
-          />
+        <div className="grid col-start-1 col-end-5 mt-5 p-5 z-10">
+          <SigninForm />
         </div>
       </div>
       <BackGroundLines />

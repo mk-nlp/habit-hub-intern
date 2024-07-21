@@ -14,11 +14,11 @@ export async function LoginUser (email: string, password: string) {
         }
     
     })
-        .then((response) => {
-            console.log(response);
+        .then((response: any) => {
+           
         })
-        .catch((error) => {
-            console.error(error);
+        .catch((error:any) => {
+            
         });
 }
 

@@ -39,10 +39,10 @@ export default function Task({ task, category, emoji }: TaskProps) {
 
   const router = useRouter();
 
-  const addTask = tasksStore((state) => state.addTask);
-  const tasks = tasksStore((state) => state.tasks);
-  const addTaskToCreator = AddTaskStore((state) => state.addTaskToCreator);
-  const CreatorTasks = AddTaskStore((state) => state.tasks);
+  const addTask = tasksStore((state: any) => state.addTask);
+  const tasks = tasksStore((state: any) => state.tasks);
+  const addTaskToCreator = AddTaskStore((state: any) => state.addTaskToCreator);
+  const CreatorTasks = AddTaskStore((state: any) => state.tasks);
   const [selectedColor, setSelectedColor] = useState<string>("");
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function Task({ task, category, emoji }: TaskProps) {
     const selectedColor =
       colors[category as keyof typeof colors][selectedColorKey];
     setSelectedColor(selectedColor);
-  }, []);
+  }, [category]);
 
   return (
     <div className="grid grid-cols-8 col-start-1 col-end-9">
@@ -62,7 +62,6 @@ export default function Task({ task, category, emoji }: TaskProps) {
       </div>
       <div className="grid col-start-5 col-end-8 ml-56 justify-center items-center mt-2 bg-white">
         <Button
-          variant="primary"
           className="bg-ash rounded-full w-12 h-12 font-bold hover:bg-purple hover:text-white"
           onClick={() => [
             addTaskToCreator(task, category, emoji, taskId),

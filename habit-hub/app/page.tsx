@@ -3,13 +3,6 @@ import RootLayout from "./layout";
 import ButtonComponent from "@/components/button";
 import MultiOptionSignOn from "@/components/multiOption";
 import BackGroundObjects from "./backgroundObjects";
-import {
-  getUserById,
-  addUser,
-  getUserByName,
-  createTask,
-  getTasks,
-} from "./backend";
 export default function Home() {
   return (
     <RootLayout>

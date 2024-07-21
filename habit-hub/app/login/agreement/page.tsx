@@ -8,7 +8,7 @@ export default function AgreementPage() {
     <div>
       <div className="grid grid-cols-4 relative">
         <div className="grid col-start-1 col-end-3 mt-28 ml-8 font-poppins font-black text-2xl text-nowrap">
-          Let's make a contract
+          Let&apos;s make a contract
         </div>
         <div className="grid col-start-1 col-end-3 mt-14 ml-8 font-poppins font-black text-md text-nowrap">
           I will

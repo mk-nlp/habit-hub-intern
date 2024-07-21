@@ -14,20 +14,16 @@ import { useEffect } from "react";
 import { validateSession } from "@/utils/validate-session-client";
 
 export default function AddTaskPage() {
-  const tasks = AddTaskStore((state) => state.task);
-  const category = AddTaskStore((state) => state.category);
-  const emoji = AddTaskStore((state) => state.emoji);
+  const tasks = AddTaskStore((state: any) => state.task);
+  const category = AddTaskStore((state: any) => state.category);
+  const emoji = AddTaskStore((state: any) => state.emoji);
   const [bgColor, setBgColor] = useState<string>("bg-yellow");
   const [taskState, setTaskState] = useState(tasks);
   const [categoryState, setCategoryState] = useState(category);
 
-  const addTaskToTaskStore = tasksStore((state) => state.addTask);
+  const addTaskToTaskStore = tasksStore((state: any) => state.addTask);
 
   const router = useRouter();
-
-  const idGenerator = () => {
-    return Math.floor(Math.random() * 1000);
-  };
 
   const [unselectedColor, setUnselectedColor] = useState<string>("bg-gray-300");
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
@@ -43,7 +39,7 @@ export default function AddTaskPage() {
   });
 
   const selectedDaysArray = Object.keys(selectedDays).filter(
-    (day) => selectedDays[day]
+    (day: string) => selectedDays[day as keyof typeof selectedDays]
   );
 
   const taskToBeAdded = {
@@ -83,7 +79,7 @@ export default function AddTaskPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Custom-Origin": "http://localhost:3000",
+            "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
           },
           body: JSON.stringify(task),
         });
@@ -116,8 +112,8 @@ export default function AddTaskPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Custom-Origin": "http://localhost:3000",
-            Host: "http://localhost:3000",
+            "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
+            Host: process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
           },
           body: JSON.stringify(task),
         });
@@ -150,7 +146,7 @@ export default function AddTaskPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Custom-Origin": "http://localhost:3000",
+            "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
           },
           body: JSON.stringify(task),
         });
@@ -159,16 +155,14 @@ export default function AddTaskPage() {
     }
   };
 
-  console.log("WEEKLY BRUH", increaseSelectedDaysWeekly);
-  console.log("DAİLY BRUH", preciseDatesOfSelectedDays);
-  console.log("MONTHLY BRUH", increaseSelectedDaysMonthly);
-
-  const toggleDay = (day) => {
+  const toggleDay = (day: keyof typeof selectedDays) => {
     setSelectedDays({ ...selectedDays, [day]: !selectedDays[day] });
   };
 
   const getButtonColor = (day: string) => {
-    return selectedDays[day] ? bgColor : "bg-gray-400/60";
+    return selectedDays[day as keyof typeof selectedDays]
+      ? bgColor
+      : "bg-gray-400/60";
   };
 
   useEffect(() => {
@@ -207,6 +201,7 @@ export default function AddTaskPage() {
       </div>
       <div className="grid col-start-1 col-end-4 px-3 mt-2">
         <InputComponent
+          type="text"
           placeholder={tasks}
           value={taskState}
           onChange={(e) => setTaskState(e.target.value)}
@@ -214,6 +209,7 @@ export default function AddTaskPage() {
       </div>
       <div className="grid col-start-1 col-end-4 px-3">
         <InputComponent
+          type="text"
           placeholder={category}
           value={categoryState}
           onChange={(e) => setCategoryState(e.target.value)}
@@ -309,17 +305,23 @@ export default function AddTaskPage() {
           <Separator className="grid col-start-1 col-end-4 mt-2 w-full bg-gray-700/60" />
         </div>
         <div className="grid col-start-1 grid-cols-7 px-5 py-2 font-poppins bg-white">
-          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-            <Button
-              key={day}
-              className={`grid w-10 h-10 rounded-full ${getButtonColor(
-                day
-              )} hover:bg-purple text-black/60`}
-              onClick={() => toggleDay(day)}
-            >
-              {day}
-            </Button>
-          ))}
+          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(
+            (day: string) => (
+              <Button
+                key={day}
+                className={`grid w-10 h-10 rounded-full ${getButtonColor(
+                  day
+                )} hover:bg-purple text-black/60`}
+                onClick={() =>
+                  toggleDay(
+                    day as "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun"
+                  )
+                }
+              >
+                {day}
+              </Button>
+            )
+          )}
           <Separator className="grid col-start-1 col-end-8 mt-2 w-full bg-gray-700/60" />
         </div>
         <div className="grid row-start-4 grid-cols-2 bg-white px-2 py-2 font-poppins text-black/60">

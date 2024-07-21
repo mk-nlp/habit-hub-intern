@@ -34,12 +34,18 @@ export const addUser = async (
   password: string
 ) => {
   const hash = (await hashPassword(password)) as string;
-  await db.insert(schema.user).values({
-    id: IdGenerator(),
-    username,
-    email,
-    password_hash: hash,
-  });
+  try {
+    await db.insert(schema.user).values({
+      id: IdGenerator(),
+      username,
+      email,
+      password_hash: hash,
+    });
+  } catch (error) {
+    console.error("Error adding user:", error);
+    return { success: false };
+  }
+  return { success: true };
 };
 
 export const addUserWithGithub = async (
@@ -76,7 +82,6 @@ export const logInUser = async (email: string, password: string) => {
       .select()
       .from(schema.user)
       .where(eq(schema.user.email, email));
-    console.log("USER", user);
 
     if (!user || !user.password_hash) {
       return false;
@@ -92,16 +97,6 @@ export const logInUser = async (email: string, password: string) => {
   }
 };
 
-export const getUserFromDb = async (email: string, password: string) => {
-  const user = await db
-    .select()
-    .from(schema.user)
-    .where(
-      and(eq(schema.user.email, email), eq(schema.user.password, password))
-    );
-  return user;
-};
-
 export const findUserFromSession = async (sessionId: string) => {
   const session = await db
     .select()
@@ -111,7 +106,6 @@ export const findUserFromSession = async (sessionId: string) => {
     .select()
     .from(schema.user)
     .where(eq(schema.user.id, session[0].userId));
-  console.log("USER", user.id);
   return user.id;
 };
 
@@ -143,8 +137,6 @@ export const createTask = async (
     userId,
     completed: false,
   });
-  console.log("TASK CREATED", task);
-  console.log("USER ID", userId);
 };
 
 export const getTasks = async (userId: string) => {
@@ -153,7 +145,6 @@ export const getTasks = async (userId: string) => {
     .from(schema.task)
     .where(eq(schema.task.userId, userId));
 
-  console.log("TASKS", tasks);
   return tasks;
 };
 
@@ -173,6 +164,14 @@ export const completeTask = async (taskId: string) => {
     .where(eq(schema.task.id, taskId));
 
   return "Task completed successfully";
+};
+
+export const findUserDetails = async (userId: string) => {
+  const [user] = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.id, userId));
+  return user;
 };
 
 export const adapter = new DrizzleSQLiteAdapter(db, session, user);

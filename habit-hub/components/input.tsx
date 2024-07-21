@@ -2,13 +2,17 @@ import { Input } from "./ui/input";
 import { Separator } from "./ui/separator";
 
 interface InputProps {
+  id?: string;
   placeholder: string;
   type: string;
   value: string;
+  name?: string;
   onChange: (e: any) => void;
 }
 
 export default function InputComponent({
+  id,
+  name,
   placeholder,
   type,
   value,

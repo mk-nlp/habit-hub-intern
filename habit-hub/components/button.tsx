@@ -47,7 +47,7 @@ export default function ButtonComponent({
         }
       }
     });
-  }, []);
+  }, [router]);
 
   return buttonFunction ? (
     <Button
@@ -55,7 +55,7 @@ export default function ButtonComponent({
       onClick={async () => {
         if (buttonFunction) {
           setLoading(true);
-          await buttonFunction(email, password);
+          buttonFunction(email ?? "", password ?? "");
         }
         router.push(buttonurl);
       }}
