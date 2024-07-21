@@ -117,6 +117,7 @@ export default function AddTaskPage() {
           headers: {
             "Content-Type": "application/json",
             "X-Custom-Origin": "http://localhost:3000",
+            Host: "http://localhost:3000",
           },
           body: JSON.stringify(task),
         });

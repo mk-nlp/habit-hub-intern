@@ -60,7 +60,7 @@ export default function EmptyTasks() {
           <BottomBar />
         </div>
         <div className="">
-          <PlusButton buttonUrl="/tasks/suggestions" />
+          <PlusButton buttonurl="/tasks/suggestions" />
         </div>
       </div>
     );
@@ -86,7 +86,7 @@ export default function EmptyTasks() {
         <BottomBar />
       </div>
       <div>
-        <PlusButton buttonUrl="/tasks/suggestions" />
+        <PlusButton buttonurl="/tasks/suggestions" />
       </div>
     </div>
   );

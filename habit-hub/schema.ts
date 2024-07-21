@@ -7,6 +7,7 @@ export const user = sqliteTable("user", {
   username: text("username").unique(),
   email: text("email").unique(),
   password_hash: text("password_has"),
+  github_id: integer("github_id").unique(),
 });
 
 export const session = sqliteTable("session", {

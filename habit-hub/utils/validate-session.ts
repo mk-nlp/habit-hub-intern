@@ -26,6 +26,10 @@ const getHeaders = (request: Request) => ({
   export async function validateSession(request: Request) {
     const { origin,  host, cookie } = getHeaders(request);
 
+    console.log("ORIGIN", origin);
+    console.log("HOST", host);
+    console.log("COOKIE", cookie);
+    
     if (!verifyOrigin(origin!, host!)) {
         return createResponse(403);
     }

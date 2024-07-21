@@ -26,7 +26,7 @@ export default function LoginPage() {
           <span>Welcome back! Sign in using your social</span>
           <span>account or email to continue.</span>
         </div>
-        <div className="grid col-start-2 col-end-4 mt-5 justify-center">
+        <div className="grid col-start-2 col-end-4 mt-5 justify-center z-50">
           <MultiOptionSignOn orientation="down" />
         </div>
         <div className="grid col-start-1 col-end-5 mt-20 p-5 z-10">
@@ -45,8 +45,8 @@ export default function LoginPage() {
         </div>
         <div className="grid col-start-2 col-end-4 mt-16 z-10">
           <ButtonComponent
-            buttonText="Login"
-            buttonUrl="/login/agreement"
+            buttontext="Login"
+            buttonurl="/login/agreement"
             email={email}
             password={password}
             buttonFunction={LoginUser}

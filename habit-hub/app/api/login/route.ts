@@ -8,7 +8,7 @@ export async function POST(request: Request, response: Response) {
         if (!user) {
             return Response.json({ Error: "Invalid username or password" });
         }
-        const session = await lucia.createSession(user[0].id, {});
+        const session = await lucia.createSession(user.id, {});
         const sessionCookie = lucia.createSessionCookie(session.id);
         return new Response(null, {
             status: 302,

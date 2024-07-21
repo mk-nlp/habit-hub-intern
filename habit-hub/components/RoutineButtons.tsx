@@ -7,8 +7,8 @@ export default function RoutineButtons() {
     <div className="grid grid-cols-4 justify-center items-center">
       <div className="grid col-start-2 justify-center">
         <Button
-          buttonText="Morning"
-          buttonUrl="/morning"
+          buttontext="Morning"
+          buttonurl="/morning"
           className="bg-purple font-poppins font-bold rounded-xl mr-4 text-sm text-black shadow-xl w-20 h-8 hover:bg-purple hover:text-white"
         >
           All
@@ -16,8 +16,8 @@ export default function RoutineButtons() {
       </div>
       <div className="grid col-start-3 justify-center">
         <Button
-          buttonText="Morning"
-          buttonUrl="/morning"
+          buttontext="Morning"
+          buttonurl="/morning"
           className=" bg-white border border-gray-300 mr-2 font-poppins font-bold rounded-xl text-xs  text-gray-400 shadow-xl w-20 px-11 h-8 hover:bg-purple hover:text-white hover:border-purple"
         >
           Daily Routine
@@ -25,8 +25,8 @@ export default function RoutineButtons() {
       </div>
       <div className="grid col-start-4 justify-center">
         <Button
-          buttonText="Morning"
-          buttonUrl="/morning"
+          buttontext="Morning"
+          buttonurl="/morning"
           className=" bg-white border border-gray-300 font-poppins font-bold rounded-xl ml-2 text-xs  text-gray-400 shadow-xl w-20 px-11 h-8 hover:bg-purple hover:text-white hover:border-purple"
         >
           Study routine

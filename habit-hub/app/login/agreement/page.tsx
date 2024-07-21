@@ -25,7 +25,7 @@ export default function AgreementPage() {
           <li> • ⏰ Limit social media.</li>
         </ul>
         <div className="grid col-start-2 col-end-4 mt-16 z-10">
-          <ButtonComponent buttonText="I AGREE" buttonUrl="/tasks" />
+          <ButtonComponent buttontext="I AGREE" buttonurl="/tasks" />
         </div>
       </div>
       <Image

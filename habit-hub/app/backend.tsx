@@ -25,6 +25,7 @@ export const getSession = async (id: string) => {
 
 export const logOut = async (id: string) => {
   await db.delete(schema.session).where(eq(schema.session.userId, id));
+  await db.delete(schema.session).where(eq(schema.session.userId, id));
 };
 
 export const addUser = async (
@@ -41,6 +42,26 @@ export const addUser = async (
   });
 };
 
+export const addUserWithGithub = async (
+  userId: string,
+  username: string,
+  githubId: number
+) => {
+  await db.insert(schema.user).values({
+    id: userId,
+    username,
+    github_id: githubId,
+  });
+};
+
+export const checkGithubUser = async (githubId: number) => {
+  const user = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.github_id, githubId));
+  return user;
+};
+
 export const getUserByName = async (name: string) => {
   const user = await db
     .select()
@@ -51,15 +72,16 @@ export const getUserByName = async (name: string) => {
 
 export const logInUser = async (email: string, password: string) => {
   try {
-    const user = await db
+    const [user] = await db
       .select()
       .from(schema.user)
       .where(eq(schema.user.email, email));
     console.log("USER", user);
-    if (!user || !user[0].password_hash) {
+
+    if (!user || !user.password_hash) {
       return false;
     }
-    const isValid = (await hashPassword(password)) === user[0].password_hash;
+    const isValid = (await hashPassword(password)) === user.password_hash;
     if (isValid) {
       return user;
     }
@@ -85,12 +107,12 @@ export const findUserFromSession = async (sessionId: string) => {
     .select()
     .from(schema.session)
     .where(eq(schema.session.id, sessionId));
-  const user = await db
+  const [user] = await db
     .select()
     .from(schema.user)
     .where(eq(schema.user.id, session[0].userId));
-  console.log("USER", user[0].id);
-  return user[0].id;
+  console.log("USER", user.id);
+  return user.id;
 };
 
 export const findUserTasks = async (userId: string) => {

@@ -12,16 +12,16 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 interface ButtonProps {
-  buttonText: string;
-  buttonUrl: string;
+  buttontext: string;
+  buttonurl: string;
   email?: string;
   password?: string;
   buttonFunction?: (email: string, password: string) => void;
 }
 
 export default function ButtonComponent({
-  buttonText,
-  buttonUrl,
+  buttontext,
+  buttonurl,
   email,
   password,
   buttonFunction,
@@ -57,7 +57,7 @@ export default function ButtonComponent({
           setLoading(true);
           await buttonFunction(email, password);
         }
-        router.push(buttonUrl);
+        router.push(buttonurl);
       }}
     >
       {loading ? (
@@ -70,17 +70,17 @@ export default function ButtonComponent({
           </motion.div>
         </div>
       ) : (
-        buttonText
+        buttontext
       )}
     </Button>
   ) : (
     <Button
       className=" bg-white font-poppins font-bold rounded-xl text-2xl text-black  shadow-xl p-7 hover:bg-purple hover:text-white"
       onClick={() => {
-        router.push(buttonUrl);
+        router.push(buttonurl);
       }}
     >
-      {buttonText}
+      {buttontext}
     </Button>
   );
 }

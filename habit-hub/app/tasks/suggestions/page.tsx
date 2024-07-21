@@ -38,7 +38,7 @@ export default function SuggestionsPage() {
         />
       </div>
       <div className="grid col-start-2 col-end-4 mt-3">
-        <ButtonComponent buttonUrl="/tasks" buttonText="Add more" />
+        <ButtonComponent buttonurl="/tasks" buttontext="Add more" />
       </div>
       <div className=" grid col-start-1 col-end-5 mt-3">
         <BottomBar />
