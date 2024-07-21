@@ -5,7 +5,7 @@ export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		expires: false,
 		attributes: {
-			secure: process.env.NODE_ENV === "production"
+			secure: process.env.STATE === "production"
 		}
 	},
 	getUserAttributes: (attributes) => {
