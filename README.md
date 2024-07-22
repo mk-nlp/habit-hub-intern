@@ -15,6 +15,7 @@ It is a fullstack app that lets users add tasks and keep their habits in check.
 - Credentails Auth (hashed)
 - Adding Tasks
 - Completing Tasks
+- Deleting Tasks
 - Calendar View
 - Multiple Languages (Turkish and English)
 
