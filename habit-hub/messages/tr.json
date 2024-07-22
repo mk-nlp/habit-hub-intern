@@ -1,0 +1,116 @@
+{
+    "HomePage":{
+        "title": "İşinizi hızlı ve kolay bir şekilde yapın",
+        "span1": "İşinizi hızlı",
+        "span2": "ve kolay",
+        "span3": "bir şekilde",
+        "span4": "yapın",
+        "description": "Sizin işleriniz, sizin kurallarınız, bizim desteğimiz",
+        "login": "Giriş Yapın",
+        "register": "Hesap oluşturun",
+        "or": "OR"
+    },
+    "LoginPage": {
+        "LoginHeader": "HabitHub'a giriş yapın",
+        "LoginTextSpan1": "Tekrar hoş geldiniz! Sosyal",
+        "LoginTextSpan2": "ya da e-posta adresinizi kullanarak giriş yapın",
+        "or": "OR",
+        "email": "E-posta adresi",
+        "emailPlaceholder": "E-posta adresinizi girin",
+        "password": "Şifre",
+        "passwordPlaceholder": "Şifrenizi girin",
+        "SignIn": "Oturum Aç",
+        "DontHaveAccount": "Hesabınız yok mu?, Kaydolun",
+        "LogginIn": "Giriş yapılıyor.."
+    }, 
+    "RegisterPage": {
+        "RegisterHeader": "HabitHub'a Kaydolun",
+        "username": "Kullanıcı Adı",
+        "usernamePlaceholder": "Kullanıcı adınızı girin",
+        "email": "E-posta adresi",
+        "emailPlaceholder": "E-posta adresinizi girin",
+        "password": "Şifre",
+        "passwordPlaceholder": "Şifrenizi girin",
+        "confirmPassword": "Şifrenizi tekrarlayın",
+        "confirmPasswordPlaceholder": "Şifrenizi tekrarlayın",
+        "Loading": "Yükleniyor...",
+        "Register": "Kayıt olun.",
+        "HaveAccount": "Zaten bir hesabınız var mı?, Buradan giriş yapın"
+    },
+    "TasksPage": {
+        "All": "Tümü",
+        "DailyRoutine": "Günlük Rutin",
+        "StudyRoutine": "Çalışma Rutini",
+        "Today": "Bugün",
+        "Sun": "Paz",
+        "Mon": "Pzt",
+        "Tue": "Sal",
+        "Wed": "Çrş",
+        "Thu": "Prş",
+        "Fri": "Cum",
+        "Sat": "Cmt",
+        "NothingHereYet": "Henüz bir şey yok.",
+        "DeleteTasks": "İşlerinizi silin."
+    },
+    "SuggestionsPage": {
+        "SuggestionHeader": "Öneriler",
+        "SuggestionCategory1Header": "Daha fazla öğrenin ve çalışın",
+        "SuggestionCategory1Text": "Bilgiye aç olun",
+        "SuggestionCategory1Category": "çalışma",
+        "SuggestionCategory2Header": "Bir kilometre koş",
+        "SuggestionCategory2Text": "Kendinizin en iyi versiyonu olun",
+        "SuggestionCategory2Category": "egzersiz",
+        "SuggestionCategory3Header": "Odanızı temizleyin",
+        "SuggestionCategory3Text": "Düzenli kalın",
+        "SuggestionCategory3Category": "cletemizlikaning",
+        "Task1": "Okuma",
+        "Task2": "Çalışma",
+        "Task3": "Koşmak",
+        "Task4": "Ağırlık kaldırın",
+        "Task5": "Evi paspaslayın",
+        "Task6": "Banyoyu temizleyin",
+        "SeeAll": "Tümünü görün"
+    },
+    "TaskAddPage": {
+        "ClickToChange": "Emojiyi değiştirmek için tıklayın",
+        "CardColor": "Kart rengi",
+        "Repeat": "Tekrar etme seçeneği ",
+        "SetACycle": "İşinizin döngüsünü belirleyin",
+        "RepeatDaily": "Günlük",
+        "RepeatWeekly": "Haftalık",
+        "RepeatMonthly": "Aylık",
+        "Mon": "Pzt",
+        "Tue": "Sal",
+        "Wed": "Çrş",
+        "Thu": "Prş",
+        "Fri": "Cum",
+        "Sat": "Cmt",
+        "Sun": "Paz",
+        "EveryWeek": "Her hafta",
+        "SetATag": "İşiniz için bir etiket belirleyin",
+        "DailyRoutine": "Günlük Rutin",
+        "WeeklyRoutine": "Haftalık Rutin",
+        "MonthlyRoutine": "Aylık Rutin",
+        "AddTask": "İş Ekle"
+    },
+    "ProfilePage":{
+        "Account": "Hesap",
+        "Profile": "Profil",
+        "Notifications": "Bildirimler", 
+        "Help": "Yardım",
+        "StorageAndData": "Depolama ve Veri",
+        "InviteAFriend": "Bir arkadaşınızı davet edin",
+        "Logout": "Çıkış Yap",
+        "CurrentLanguage": "Güncel dil",
+        "language": "Türkçe 🇹🇷",
+        "ChangeLanguage": "Değiştirmek için tıklayın"
+
+    },
+    "CalendarPage": {
+        "Calendar": "Takvim",
+        "NothingHereYet": "Bugün için yapılacak iş yok",
+        "AddTask": "İş ekle"
+
+    }
+    
+}

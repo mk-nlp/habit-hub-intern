@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const validate = (values: {
   name: string;
@@ -46,6 +47,7 @@ const validate = (values: {
 };
 
 export const SignupForm = () => {
+  const t = useTranslations();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const login = async (email: string, password: string) => {
@@ -102,7 +104,7 @@ export const SignupForm = () => {
     >
       <div className="flex-row items-center justify-center">
         <label htmlFor="name" className="flex">
-          User name
+          {t("RegisterPage.username")}
         </label>
         <input
           id="name"
@@ -111,7 +113,7 @@ export const SignupForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
-          placeholder="Enter your user name"
+          placeholder={t("RegisterPage.usernamePlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -124,7 +126,7 @@ export const SignupForm = () => {
       </div>
       <div className="flex-row items-center justify-center">
         <label htmlFor="email" className="flex">
-          Email Address
+          {t("RegisterPage.email")}
         </label>
         <input
           id="email"
@@ -133,7 +135,7 @@ export const SignupForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
-          placeholder="Enter your email"
+          placeholder={t("RegisterPage.emailPlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -145,7 +147,7 @@ export const SignupForm = () => {
         ) : null}
       </div>
       <div className="flex-row items-center justify-center">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">{t("RegisterPage.password")}</label>
         <input
           id="password"
           name="password"
@@ -153,7 +155,7 @@ export const SignupForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
-          placeholder="Enter your password"
+          placeholder={t("RegisterPage.passwordPlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -165,7 +167,9 @@ export const SignupForm = () => {
         ) : null}
       </div>
       <div className="flex-row items-center justify-center">
-        <label htmlFor="repeatPassword">Repeat Password</label>
+        <label htmlFor="repeatPassword">
+          {t("RegisterPage.confirmPassword")}
+        </label>
         <input
           id="repeatPassword"
           name="repeatPassword"
@@ -173,7 +177,7 @@ export const SignupForm = () => {
           onChange={formik.handleChange}
           value={formik.values.repeatPassword}
           onBlur={formik.handleBlur}
-          placeholder="Repeat your password"
+          placeholder={t("RegisterPage.confirmPasswordPlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -196,14 +200,14 @@ export const SignupForm = () => {
           type="submit"
           className=" px-12 py-4 font-bold text-2xl shadow-xl bg-white font-poppins rounded-xl mt-4"
         >
-          {loading ? "Loading..." : "Register"}
+          {loading ? t("RegisterPage.Loading") : t("RegisterPage.Register")}
         </button>
       </div>
       <Link
         href="/login"
         className="flex items-center justify-center mt-5 underline font-poppins text-purple"
       >
-        Already have an account? Login here
+        {t("RegisterPage.HaveAccount")}
       </Link>
     </form>
   );

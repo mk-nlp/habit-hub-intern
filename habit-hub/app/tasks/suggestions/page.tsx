@@ -1,44 +1,44 @@
 import SuggestionComponent from "@/components/suggestionTopic";
 import BottomBar from "@/components/bottomBar";
 import ButtonComponent from "@/components/button";
+import { useTranslations } from "next-intl";
 
 export default function SuggestionsPage() {
+  const t = useTranslations();
+
   return (
     <div className="grid grid-cols-4">
       <div className="grid col-start-2 col-end-4 justify-center font-poppins mt-5 font-bold">
-        Suggestions
+        {t("SuggestionsPage.SuggestionHeader")}
       </div>
       <div className="grid col-start-1 col-end-4">
         <SuggestionComponent
-          suggestion="Learn and study more"
+          suggestion={t("SuggestionsPage.SuggestionCategory1Header")}
           category="study"
-          explanation="Stay hungry for knowledge"
-          task="Read"
-          task2="Study"
+          explanation={t("SuggestionsPage.SuggestionCategory1Text")}
+          task={t("SuggestionsPage.Task1")}
+          task2={t("SuggestionsPage.Task2")}
           task1emoji="📖"
           task2emoji="📚"
         />
         <SuggestionComponent
-          suggestion="Run a mile"
+          suggestion={t("SuggestionsPage.SuggestionCategory2Header")}
           category="exercise"
-          explanation="Become your best version"
-          task="Run"
-          task2="Lift weights"
+          explanation={t("SuggestionsPage.SuggestionCategory2Text")}
+          task={t("SuggestionsPage.Task3")}
+          task2={t("SuggestionsPage.Task4")}
           task1emoji="🏃‍♂️"
           task2emoji="🏋️"
         />
         <SuggestionComponent
-          suggestion="Clean your room"
+          suggestion={t("SuggestionsPage.SuggestionCategory3Header")}
           category="cleaning"
-          explanation="Stay organized"
-          task="Mop the house"
-          task2="Clean the bathroom"
+          explanation={t("SuggestionsPage.SuggestionCategory3Text")}
+          task={t("SuggestionsPage.Task5")}
+          task2={t("SuggestionsPage.Task6")}
           task1emoji="🪣"
           task2emoji="🧼"
         />
-      </div>
-      <div className="grid col-start-2 col-end-4 mt-3">
-        <ButtonComponent buttonurl="/tasks" buttontext="Add more" />
       </div>
       <div className=" grid col-start-1 col-end-5 mt-3">
         <BottomBar />

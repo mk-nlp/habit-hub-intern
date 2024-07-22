@@ -9,11 +9,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Skeleton } from "./ui/skeleton";
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function EmptyTasks() {
   const tasks = tasksStore((state: any) => state.tasks);
   const addTask = tasksStore((state: any) => state.addTask);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations();
 
   async function fetchTasks() {
     setLoading(true);
@@ -79,7 +81,7 @@ export default function EmptyTasks() {
         </div>
         <Separator className="mt-5 w-96" />
         <div className="text-lg mt-2 font-poppins font-bold">
-          Nothing here yet...
+          {t("TasksPage.NothingHereYet")}
         </div>
       </div>
       <div className="mt-52">

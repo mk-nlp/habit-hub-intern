@@ -4,6 +4,8 @@ import { Separator } from "./ui/separator";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { daysStore } from "@/app/tasks/daysState";
 
 const validate = (values: { email: string; password: any }) => {
   const errors: {
@@ -25,8 +27,16 @@ const validate = (values: { email: string; password: any }) => {
 };
 
 export const SigninForm = () => {
+  const t = useTranslations();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const ChangeLanguage = daysStore((state: any) => state.ChangeLanguage);
+  const backendLanguage = daysStore((state: any) => state.backendLanguage);
+
+  const populateLanguage = async () => {
+    ChangeLanguage(await backendLanguage());
+  };
+
   const login = async (email: string, password: string) => {
     setLoading(true);
     const response = await fetch("/api/login", {
@@ -42,6 +52,7 @@ export const SigninForm = () => {
       setLoading(false);
     }
     if (data && response.status === 302) {
+      await populateLanguage();
       window.location.href = "/tasks";
     }
   };
@@ -64,7 +75,7 @@ export const SigninForm = () => {
     >
       <div className="flex-row items-center justify-center">
         <label htmlFor="email" className="flex">
-          Email Address
+          {t("LoginPage.email")}
         </label>
         <input
           id="email"
@@ -73,7 +84,7 @@ export const SigninForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
-          placeholder="Enter your email"
+          placeholder={t("LoginPage.emailPlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -85,7 +96,7 @@ export const SigninForm = () => {
         ) : null}
       </div>
       <div className="flex-row items-center justify-center">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">{t("LoginPage.password")}</label>
         <input
           id="password"
           name="password"
@@ -93,7 +104,7 @@ export const SigninForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
-          placeholder="Enter your password"
+          placeholder={t("LoginPage.passwordPlaceholder")}
           className="flex w-full h-12 border-gray-200 border-2 border-b-0 rounded-xs p-4"
         />
         <Separator
@@ -115,14 +126,14 @@ export const SigninForm = () => {
           type="submit"
           className=" px-12 py-4 font-bold text-2xl shadow-xl bg-white font-poppins rounded-xl mt-4"
         >
-          {loading ? "Logging in..." : "Sign In"}
+          {loading ? t("LoginPage.LogginIn") : t("LoginPage.SignIn")}
         </button>
       </div>
       <Link
         href="/register"
         className="flex items-center justify-center mt-5 underline font-poppins text-purple"
       >
-        Don&apos;t have an account? Register
+        {t("LoginPage.DontHaveAccount")}
       </Link>
     </form>
   );

@@ -10,6 +10,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import ButtonComponent from "@/components/button";
 import BottomBar from "@/components/bottomBar";
+import { useTranslations } from "next-intl";
 
 import * as React from "react";
 export default function CalendarPage() {
@@ -17,6 +18,7 @@ export default function CalendarPage() {
   const tasks = tasksStore((state: any) => state.tasks);
   const addTask = tasksStore((state: any) => state.addTask);
   const emptyTasks = tasksStore((state: any) => state.emptyTasks);
+  const t = useTranslations();
 
   const router = useRouter();
 
@@ -61,7 +63,6 @@ export default function CalendarPage() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const dateString = date?.toISOString().split("T")[0];
-  useEffect(() => {});
 
   useEffect(() => {
     emptyTasks();
@@ -70,7 +71,7 @@ export default function CalendarPage() {
   return (
     <div className="flex flex-col min-h-screen  bg-blue">
       <div className="flex items-center justify-center font-bold font-poppins py-5">
-        <h1>Calendar</h1>
+        <h1>{t("CalendarPage.Calendar")}</h1>
       </div>
       <div className="flex items-center justify-center mt-5">
         <Calendar
@@ -107,7 +108,7 @@ export default function CalendarPage() {
         ) : (
           <div>
             <div className="flex items-center justify-center text-sm text-gray-500">
-              <h1>No tasks for this day...</h1>
+              <h1>{t("CalendarPage.NothingHereYet")}</h1>
             </div>
             <div className="flex items-center justify-center mt-5">
               <Image
@@ -119,7 +120,7 @@ export default function CalendarPage() {
             </div>
             <div className="flex items-center justify-center mt-12">
               <ButtonComponent
-                buttontext="Add a task"
+                buttontext={t("CalendarPage.AddTask")}
                 buttonurl="/tasks/suggestions"
               ></ButtonComponent>
             </div>

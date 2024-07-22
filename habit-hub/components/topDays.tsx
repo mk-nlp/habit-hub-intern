@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { validateSession } from "@/utils/validate-session-client";
 import { useRouter } from "next/navigation";
 import { tasksStore } from "@/app/tasks/tasksState";
+import { useTranslations } from "next-intl";
 
 export default function TopDays() {
   const day = daysStore((state: any) => state.day);
@@ -18,12 +19,17 @@ export default function TopDays() {
   const preciseDatesOfWeek = daysStore(
     (state: any) => state.preciseDatesOfWeek
   );
+  const setLastSelectedDay = daysStore(
+    (state: any) => state.setLastSelectedDay
+  );
+  const ChangeLanguage = daysStore((state: any) => state.ChangeLanguage);
+  const backendLanguage = daysStore((state: any) => state.backendLanguage);
+  const lastSelectedDay = daysStore((state: any) => state.lastSelectedDay);
   const tasks = tasksStore((state: any) => state.tasks);
   const addTask = tasksStore((state: any) => state.addTask);
   const emptyTasks = tasksStore((state: any) => state.emptyTasks);
-
+  const t = useTranslations();
   const router = useRouter();
-
   const getTaskByDate = async (date: string) => {
     const response = await fetch(`/api/get-task-date?date=${date}`, {
       method: "GET",
@@ -35,6 +41,13 @@ export default function TopDays() {
     const data = await response.json();
     addTask(data);
   };
+
+  useEffect(() => {
+    async function reloadTopDays() {
+      ChangeLanguage(await backendLanguage());
+    }
+    reloadTopDays();
+  }, []);
 
   useEffect(() => {
     validateSession().then((data) => {
@@ -65,34 +78,36 @@ export default function TopDays() {
   return (
     <div className="grid grid-cols-4 bg-pink/60 h-40">
       <div className="grid col-start-2 col-end-4 justify-center mt-5 font-poppins font-bold">
-        {selectedDay === day ? "Today" : selectedDay}
+        {selectedDay === day ? t("TasksPage.Today") : selectedDay}
       </div>
       <div className="grid grid-cols-7 col-start-1 col-end-5 mb-6 font-poppins font-bold items-center gap-2 p-0.5">
-        {days.map((d: any, i: any) => (
-          <Button
-            ref={d === day ? buttonRef : null}
-            key={d}
-            className={`grid grid-rows-2 w-13 h-18 rounded-xl hover:bg-purple hover:font-extrabold ${
-              selectedDay === d ? "bg-purple" : "bg-pink-2/60"
-            }`}
-            onClick={() => {
-              setSelectedDay(d);
-              emptyTasks();
-              getTaskByDate(preciseDatesOfWeek[i]);
-            }}
-          >
-            <div
-              className={`text-sm mb-2 text-black ${
-                selectedDay === d ? "font-extrabold" : ""
+        {days &&
+          days.map((d: any, i: any) => (
+            <Button
+              ref={d === day ? buttonRef : null}
+              key={d}
+              className={`grid grid-rows-2 w-13 h-18 rounded-xl hover:bg-purple hover:font-extrabold ${
+                selectedDay === d ? "bg-purple" : "bg-pink-2/60"
               }`}
+              onClick={() => {
+                setSelectedDay(d);
+                emptyTasks();
+                getTaskByDate(preciseDatesOfWeek[i]);
+                setLastSelectedDay(preciseDatesOfWeek[i]);
+              }}
             >
-              {d}
-            </div>
-            <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
-              {datesOfWeek[i]}
-            </div>
-          </Button>
-        ))}
+              <div
+                className={`text-sm mb-2 text-black ${
+                  selectedDay === d ? "font-extrabold" : ""
+                }`}
+              >
+                {d}
+              </div>
+              <div className=" text-base border rounded-full px-2 py-1 bg-white text-black ">
+                {datesOfWeek[i]}
+              </div>
+            </Button>
+          ))}
       </div>
     </div>
   );

@@ -12,14 +12,17 @@ import { tasksStore } from "../tasksState";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { validateSession } from "@/utils/validate-session-client";
+import { useTranslations } from "next-intl";
 
 export default function AddTaskPage() {
   const tasks = AddTaskStore((state: any) => state.task);
   const category = AddTaskStore((state: any) => state.category);
   const emoji = AddTaskStore((state: any) => state.emoji);
+  const setEmoji = AddTaskStore((state: any) => state.setEmoji);
   const [bgColor, setBgColor] = useState<string>("bg-yellow");
   const [taskState, setTaskState] = useState(tasks);
   const [categoryState, setCategoryState] = useState(category);
+  const t = useTranslations();
 
   const addTaskToTaskStore = tasksStore((state: any) => state.addTask);
 
@@ -56,9 +59,15 @@ export default function AddTaskPage() {
   const preciseDate = today.toISOString().split("T")[0];
 
   const preciseDatesOfSelectedDays = selectedDaysArray.map((day) => {
-    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
-      day
-    );
+    const dayIndex = [
+      t("TaskAddPage.Sun"),
+      t("TaskAddPage.Mon"),
+      t("TaskAddPage.Tue"),
+      t("TaskAddPage.Wed"),
+      t("TaskAddPage.Thu"),
+      t("TaskAddPage.Fri"),
+      t("TaskAddPage.Sat"),
+    ].indexOf(day);
     const date = new Date(today);
     date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7));
     return date.toISOString().split("T")[0];
@@ -89,9 +98,15 @@ export default function AddTaskPage() {
   };
 
   const increaseSelectedDaysWeekly = selectedDaysArray.map((day) => {
-    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
-      day
-    );
+    const dayIndex = [
+      t("TaskAddPage.Sun"),
+      t("TaskAddPage.Mon"),
+      t("TaskAddPage.Tue"),
+      t("TaskAddPage.Wed"),
+      t("TaskAddPage.Thu"),
+      t("TaskAddPage.Fri"),
+      t("TaskAddPage.Sat"),
+    ].indexOf(day);
     const date = new Date(today);
     date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7) * 7);
     return date.toISOString().split("T")[0];
@@ -123,9 +138,15 @@ export default function AddTaskPage() {
   };
 
   const increaseSelectedDaysMonthly = selectedDaysArray.map((day) => {
-    const dayIndex = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(
-      day
-    );
+    const dayIndex = [
+      t("TaskAddPage.Sun"),
+      t("TaskAddPage.Mon"),
+      t("TaskAddPage.Tue"),
+      t("TaskAddPage.Wed"),
+      t("TaskAddPage.Thu"),
+      t("TaskAddPage.Fri"),
+      t("TaskAddPage.Sat"),
+    ].indexOf(day);
     const date = new Date(today);
     date.setDate(today.getDate() + ((dayIndex + 7 - today.getDay()) % 7) * 30);
     return date.toISOString().split("T")[0];
@@ -185,11 +206,20 @@ export default function AddTaskPage() {
   }, []);
   return (
     <div className={`grid grid-cols-3  ${bgColor}/60`}>
-      <div className="grid col-start-2 justify-center text-8xl mt-8">
-        {emoji}
+      <div className={`grid col-start-2 justify-center text-8xl mt-8 `}>
+        <input
+          type="text"
+          value={emoji}
+          onChange={(e) => setEmoji(e.target.value)}
+          maxLength={1}
+          className={`w-32 bg-transparent text-center`}
+        />
       </div>
       <div className="grid col-start-3 justify-center mt-8 ml-8">
-        <Button className="w-14 h-14 rounded-full bg-ash">
+        <Button
+          className="w-14 h-14 rounded-full bg-ash"
+          onClick={() => router.push("/tasks/suggestions")}
+        >
           <X size={24} className="text-black" />
         </Button>
       </div>
@@ -197,7 +227,7 @@ export default function AddTaskPage() {
         {tasks}
       </div>
       <div className="grid col-start-2 justify-center mt-1 font-light font-poppins text-xs text-nowrap">
-        Click to change the emoji
+        {t("TaskAddPage.ClickToChange")}
       </div>
       <div className="grid col-start-1 col-end-4 px-3 mt-2">
         <InputComponent
@@ -216,7 +246,7 @@ export default function AddTaskPage() {
         />
       </div>
       <div className="grid col-start-1 ml-4 mt-3 font-poppins font-bold text-black/80">
-        Card color
+        {t("TaskAddPage.CardColor")}
       </div>
       <div className="grid grid-cols-7 col-start-1 col-end-4 mt-2 justify-center justify-items-center px-5">
         <Button
@@ -270,11 +300,11 @@ export default function AddTaskPage() {
         ></Button>
       </div>
       <div className="grid col-start-1 font-poppins font-bold text-black/80 ml-4 mt-3 ">
-        Repeat
+        {t("TaskAddPage.Repeat")}
       </div>
       <div className="grid grid-rows-4 col-start-1 col-end-4 border-4 rounded-xl border-white">
         <div className="grid row-start-1 justify-items-start p-2 bg-white font-poppins text-black/60">
-          Set a cycle for your task
+          {t("TaskAddPage.SetACycle")}
           <Separator className="bg-gray-700/60" />
         </div>
         <div className="grid row-start-2 grid-cols-3 bg-white font-poppins text-black/60">
@@ -284,7 +314,7 @@ export default function AddTaskPage() {
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("daily")}
           >
-            Daily
+            {t("TaskAddPage.RepeatDaily")}
           </Button>
           <Button
             className={`grid col-start-2 w-32 relative z-10 hover:bg-purple ${
@@ -292,7 +322,7 @@ export default function AddTaskPage() {
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("weekly")}
           >
-            Weekly
+            {t("TaskAddPage.RepeatWeekly")}
           </Button>
           <Button
             className={`grid col-start-3 w-32 -ml-11 hover:bg-purple ${
@@ -300,34 +330,44 @@ export default function AddTaskPage() {
             } text-black/60 font-poppins rounded-full`}
             onClick={() => setSelectedButton("monthly")}
           >
-            Monthly
+            {t("TaskAddPage.RepeatMonthly")}
           </Button>
           <Separator className="grid col-start-1 col-end-4 mt-2 w-full bg-gray-700/60" />
         </div>
         <div className="grid col-start-1 grid-cols-7 px-5 py-2 font-poppins bg-white">
-          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(
-            (day: string) => (
-              <Button
-                key={day}
-                className={`grid w-10 h-10 rounded-full ${getButtonColor(
-                  day
-                )} hover:bg-purple text-black/60`}
-                onClick={() =>
-                  toggleDay(
-                    day as "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun"
-                  )
-                }
-              >
-                {day}
-              </Button>
-            )
-          )}
+          {[
+            t("TaskAddPage.Mon"),
+            t("TaskAddPage.Tue"),
+            t("TaskAddPage.Wed"),
+            t("TaskAddPage.Thu"),
+            t("TaskAddPage.Fri"),
+            t("TaskAddPage.Sat"),
+            t("TaskAddPage.Sun"),
+          ].map((day: string) => (
+            <Button
+              key={day}
+              className={`grid w-10 h-10 rounded-full ${getButtonColor(
+                day
+              )} hover:bg-purple text-black/60`}
+              onClick={() =>
+                toggleDay(
+                  day as "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun"
+                )
+              }
+            >
+              {day}
+            </Button>
+          ))}
           <Separator className="grid col-start-1 col-end-8 mt-2 w-full bg-gray-700/60" />
         </div>
         <div className="grid row-start-4 grid-cols-2 bg-white px-2 py-2 font-poppins text-black/60">
-          <div className="justify-self-start ml-2">Repeat</div>
+          <div className="justify-self-start ml-2">
+            {t("TaskAddPage.Repeat")}
+          </div>
           <div className="grid grid-cols-1 mr-2">
-            <div className="grid col-start-1 justify-self-end">Every week</div>
+            <div className="grid col-start-1 justify-self-end">
+              {t("TaskAddPage.EveryWeek")}
+            </div>
             <ChevronRight
               size={24}
               className="grid col-start-2 justify-self-start"
@@ -337,7 +377,7 @@ export default function AddTaskPage() {
         </div>
         <div className=" grid grid-rows-2 rounded-2xl mt-3">
           <div className=" grid row-start-1 bg-white font-poppins text-black/60 p-2">
-            <div>Set a tag for your task</div>
+            <div>{t("TaskAddPage.SetATag")}</div>
             <Separator className="bg-gray-700/60" />
           </div>
           <div className="grid row-start-2 grid-cols-3 px-2 py-2 bg-white">
@@ -347,7 +387,7 @@ export default function AddTaskPage() {
               } text-black/60 font-poppins rounded-full`}
               onClick={() => setSelectedRoutine("daily routine")}
             >
-              Daily routine
+              {t("TaskAddPage.DailyRoutine")}
             </Button>
             <Button
               className={`grid col-start-2 w-32 relative z-10 hover:bg-purple ${
@@ -355,7 +395,7 @@ export default function AddTaskPage() {
               } text-black/60 font-poppins rounded-full`}
               onClick={() => setSelectedRoutine("weekly routine")}
             >
-              Weekly routine
+              {t("TaskAddPage.WeeklyRoutine")}
             </Button>
             <Button
               className={`grid col-start-3 w-32 hover:bg-purple ${
@@ -365,7 +405,7 @@ export default function AddTaskPage() {
               } text-black/60 font-poppins rounded-full`}
               onClick={() => setSelectedRoutine("monthly routine")}
             >
-              Monthly routine
+              {t("TaskAddPage.MonthlyRoutine")}
             </Button>
           </div>
         </div>
@@ -389,7 +429,7 @@ export default function AddTaskPage() {
             }
           }}
         >
-          Add Task
+          {t("TaskAddPage.AddTask")}
         </Button>
         <BottomBar />
       </div>

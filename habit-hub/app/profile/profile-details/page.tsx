@@ -2,15 +2,18 @@ import { cookies } from "next/headers";
 import ButtonComponent from "@/components/button";
 
 async function fetchProfileDetails(cookie: string) {
-  const response = await fetch("http://localhost:3000/api/profile-details", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
-      Cookie: `auth_session=${cookie}`,
-      Host: process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_ORIGIN}/api/profile-details`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Custom-Origin": process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
+        Cookie: `auth_session=${cookie}`,
+        Host: process.env.NEXT_PUBLIC_ORIGIN?.toString() ?? "",
+      },
+    }
+  );
 
   const data = await response.json();
   return data;

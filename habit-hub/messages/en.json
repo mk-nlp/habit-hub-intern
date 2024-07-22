@@ -1,0 +1,116 @@
+{
+    "HomePage":{
+        "title": "Do your tasks quickly and easily",
+        "span1": "Do your",
+        "span2": "tasks",
+        "span3": "quickly",
+        "span4": "and easy",
+        "description": "Your tasks, your rules, our support",
+        "login": "Login",
+        "register": "Create an account",
+        "or": "OR"
+    },
+    "LoginPage": {
+        "LoginHeader": "Login to HabitHub",
+        "LoginTextSpan1": "Welcome back! Sign in using your social",
+        "LoginTextSpan2": "account or email to continue",
+        "or": "OR",
+        "email": "Email address",
+        "emailPlaceholder": "Enter your email",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "SignIn": "Sign In",
+        "DontHaveAccount": "Don't have an account?, Register",
+        "LogginIn": "Logging in..."
+    }, 
+    "RegisterPage": {
+        "RegisterHeader": "Register to HabitHub",
+        "username": "Username",
+        "usernamePlaceholder": "Enter your username",
+        "email": "Email address",
+        "emailPlaceholder": "Enter your email",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "confirmPassword": "Repeat your password",
+        "confirmPasswordPlaceholder": "Repeat your password",
+        "Loading": "Loading...",
+        "Register": "Register",
+        "HaveAccount": "Already have an account?, Login here"
+    },
+    "TasksPage": {
+        "All": "All",
+        "DailyRoutine": "Daily Routine",
+        "StudyRoutine": "Study Routine",
+        "Today": "Today",
+        "Sun": "Sun",
+        "Mon": "Mon",
+        "Tue": "Tue",
+        "Wed": "Wed",
+        "Thu": "Thu",
+        "Fri": "Fri",
+        "Sat": "Sat",
+        "NothingHereYet": "Nothing here yet",
+        "DeleteTasks": "Delete tasks"
+    },
+    "SuggestionsPage": {
+        "SuggestionHeader": "Suggestions",
+        "SuggestionCategory1Header": "Learn and study more",
+        "SuggestionCategory1Text": "Stay hungry for knowledge",
+        "SuggestionCategory1Category": "study",
+        "SuggestionCategory2Header": "Run a mile",
+        "SuggestionCategory2Text": "Become the best version of yourself",
+        "SuggestionCategory2Category": "exercise",
+        "SuggestionCategory3Header": "Clean your room",
+        "SuggestionCategory3Text": "Stay organized",
+        "SuggestionCategory3Category": "cleaning",
+        "Task1": "Read",
+        "Task2": "Study",
+        "Task3": "Run",
+        "Task4": "Lift weights",
+        "Task5": "Mop the house",
+        "Task6": "Clean the bathroom",
+        "SeeAll": "See all"
+    },
+    "TaskAddPage": {
+        "ClickToChange": "Click to change the emoji",
+        "CardColor": "Card color",
+        "Repeat": "Repeat",
+        "SetACycle": "Set a cycle for your task",
+        "RepeatDaily": "Daily",
+        "RepeatWeekly": "Weekly",
+        "RepeatMonthly": "Monthly",
+        "Mon": "Mon",
+        "Tue": "Tue",
+        "Wed": "Wed",
+        "Thu": "Thu",
+        "Fri": "Fri",
+        "Sat": "Sat",
+        "Sun": "Sun",
+        "EveryWeek": "Every week",
+        "SetATag": "Set a tag for your task",
+        "DailyRoutine": "Daily Routine",
+        "WeeklyRoutine": "Weekly Routine",
+        "MonthlyRoutine": "Monthly Routine",
+        "AddTask": "Add Task"
+    },
+    "ProfilePage":{
+        "Account": "Account",
+        "Profile": "Profile",
+        "Notifications": "Notifications", 
+        "Help": "Help",
+        "StorageAndData": "Storage & Data",
+        "InviteAFriend": "Invite a friend",
+        "Logout": "Logout",
+        "CurrentLanguage": "Current language",
+        "language": "English 🇺🇸",
+        "ChangeLanguage": "Click to change"
+
+    },
+    "CalendarPage": {
+        "Calendar": "Calendar",
+        "NothingHereYet": "No taks for this day",
+        "AddTask": "Add a task"
+
+    }
+    
+}

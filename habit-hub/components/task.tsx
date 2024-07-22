@@ -6,7 +6,7 @@ import { AddTaskStore } from "@/app/tasks/add-task/addTaskState";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
-
+import { useTranslations } from "next-intl";
 interface TaskProps {
   task: string;
   category: string;
@@ -20,6 +20,7 @@ export default function Task({ task, category, emoji }: TaskProps) {
     };
   };
 
+  const t = useTranslations();
   const colors: ColorType = {
     study: {
       yellow: "bg-yellow/60",
@@ -68,7 +69,7 @@ export default function Task({ task, category, emoji }: TaskProps) {
             router.push("/tasks/add-task"),
           ]}
         >
-          <Plus size={24} />
+          <Plus size={24} className="text-black" />
         </Button>
       </div>
     </div>

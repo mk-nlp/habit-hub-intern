@@ -40,12 +40,29 @@ export const addUser = async (
       username,
       email,
       password_hash: hash,
+      language: "en",
     });
   } catch (error) {
     console.error("Error adding user:", error);
     return { success: false };
   }
   return { success: true };
+};
+
+export const changeUserLanguage = async (userId: string, language: string) => {
+  await db
+    .update(schema.user)
+    .set({ language })
+    .where(eq(schema.user.id, userId));
+  return { success: true };
+};
+
+export const getUserLanguage = async (userId: string) => {
+  const [user] = await db
+    .select()
+    .from(schema.user)
+    .where(eq(schema.user.id, userId));
+  return user.language;
 };
 
 export const addUserWithGithub = async (
@@ -155,6 +172,14 @@ export const getTaskByDate = async (userId: string, date: string) => {
     .where(and(eq(schema.task.userId, userId), eq(schema.task.date, date)));
 
   return tasks;
+};
+
+export const deleteTaskByDate = async (userId: string, date: string) => {
+  await db
+    .delete(schema.task)
+    .where(and(eq(schema.task.userId, userId), eq(schema.task.date, date)));
+
+  return { success: true };
 };
 
 export const completeTask = async (taskId: string) => {
