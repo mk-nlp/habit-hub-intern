@@ -18,8 +18,6 @@ export default function ProfilePage() {
   const currentLanguage = daysStore((state: any) => state.currentLanguage);
   const backendLanguage = daysStore((state: any) => state.backendLanguage);
 
-  console.log(currentLanguage);
-
   async function changeLanguageRequest(currentLanguage: string) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_ORIGIN}/api/change-language?language=${currentLanguage}`,
@@ -89,7 +87,6 @@ export default function ProfilePage() {
           className="bg-white text-black font-poppins p-6 hover:bg-purple hover:text-white"
           onClick={async () => {
             const currentLanguage = await backendLanguage();
-            console.log("NE GELIYOR YAV", currentLanguage);
             const newLanguage = currentLanguage === "en" ? "tr" : "en";
             changeLanguageRequest(newLanguage);
             ChangeLanguage(backendLanguage());

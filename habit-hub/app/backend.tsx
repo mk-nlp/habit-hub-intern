@@ -68,12 +68,14 @@ export const getUserLanguage = async (userId: string) => {
 export const addUserWithGithub = async (
   userId: string,
   username: string,
-  githubId: number
+  githubId: number,
+  language: string
 ) => {
   await db.insert(schema.user).values({
     id: userId,
     username,
     github_id: githubId,
+    language: language,
   });
 };
 

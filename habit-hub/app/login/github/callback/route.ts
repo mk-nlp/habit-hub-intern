@@ -42,7 +42,7 @@ export async function GET(request: Request) {
         }
 
         const userId = generateIdFromEntropySize(10); // 16 characters long
-		await addUserWithGithub(userId, githubUserResult.login, githubUserResult.id);
+		await addUserWithGithub(userId, githubUserResult.login, githubUserResult.id, "en");
         const session = await lucia.createSession(userId, {});
 		const sessionCookie = lucia.createSessionCookie(session.id);
 		return new Response(null, {

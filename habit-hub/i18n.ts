@@ -12,30 +12,39 @@ const backendLanguage = async () => {
             },
         });
         const jsonData = await response.json();
-        console.log("HADE BE KARDEŞ", jsonData);
         return jsonData;
         
     };
 
 
-export default getRequestConfig(async () => {
+    export default getRequestConfig(async () => {
+        try {
+          const locale = await backendLanguage();
 
-  // Provide a static locale, fetch a user setting,
-  // read from `cookies()`, `headers()`, etc.
-  const locale = await backendLanguage();
-  console.log ("LOCALE", locale);
-
-  if ( locale === "tr" ) {
-    return {
-      locale,
-      messages: (await import(`./messages/tr.json`)).default
-    };
-    }
-    else {
-        return {
-            locale,
+          if (locale === null || locale === undefined || (locale !== "en" && locale !== "tr")) {
+            return {
+              locale: 'en',
+              messages: (await import(`./messages/en.json`)).default
+            };
+          }
+      
+          if (locale === "tr") {
+            return {
+              locale,
+              messages: (await import(`./messages/tr.json`)).default
+            };
+          } else {
+            return {
+              locale,
+              messages: (await import(`./messages/en.json`)).default
+            };
+          }
+        } catch (error) {
+          console.error("Error fetching locale:", error);
+          // Default to English on error
+          return {
+            locale: 'en',
             messages: (await import(`./messages/en.json`)).default
-        };
+          };
         }
- 
-});
+      });
