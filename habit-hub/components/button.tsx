@@ -75,7 +75,7 @@ export default function ButtonComponent({
     </Button>
   ) : (
     <Button
-      className=" bg-white font-poppins font-bold rounded-xl text-2xl text-black  shadow-xl p-7 hover:bg-purple hover:text-white"
+      className="md:w-60 bg-white font-poppins font-bold rounded-xl text-2xl text-black  shadow-xl p-7 hover:bg-purple hover:text-white"
       onClick={() => {
         router.push(buttonurl);
       }}

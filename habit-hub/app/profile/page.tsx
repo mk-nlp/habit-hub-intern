@@ -18,6 +18,8 @@ export default function ProfilePage() {
   const currentLanguage = daysStore((state: any) => state.currentLanguage);
   const backendLanguage = daysStore((state: any) => state.backendLanguage);
 
+  console.log(currentLanguage);
+
   async function changeLanguageRequest(currentLanguage: string) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_ORIGIN}/api/change-language?language=${currentLanguage}`,

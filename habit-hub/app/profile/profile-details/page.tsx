@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import ButtonComponent from "@/components/button";
+import BottomBar from "@/components/bottomBar";
 
 async function fetchProfileDetails(cookie: string) {
   const response = await fetch(
@@ -41,6 +42,7 @@ export default async function ProfileDetailsPage() {
         <div className="flex items-center justify-center py-20">
           <ButtonComponent buttontext="Logout" buttonurl="/profile/logout" />
         </div>
+        <BottomBar />
       </div>
     </div>
   );

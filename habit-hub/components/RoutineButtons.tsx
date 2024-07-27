@@ -35,7 +35,7 @@ export default function RoutineButtons() {
 
   return (
     <div className="grid grid-cols-4 justify-center items-center">
-      <div className="grid col-start-2 justify-center">
+      <div className="grid col-start-2 mr-2 justify-center">
         <Button className="bg-purple font-poppins font-bold rounded-xl mr-4 text-sm text-white shadow-xl w-20 h-8 hover:bg-purple hover:text-white">
           {t("TasksPage.All")}
         </Button>
@@ -45,7 +45,7 @@ export default function RoutineButtons() {
           {t("TasksPage.DailyRoutine")}
         </Button>
       </div>
-      <div className="grid col-start-4 justify-center">
+      <div className="grid col-start-4 ml-2 justify-center">
         <Button className="bg-white border border-gray-300 font-poppins font-bold rounded-xl ml-2 text-xs  text-gray-400 shadow-xl w-20 px-11 h-8 hover:bg-purple hover:text-white hover:border-purple">
           {t("TasksPage.StudyRoutine")}
         </Button>

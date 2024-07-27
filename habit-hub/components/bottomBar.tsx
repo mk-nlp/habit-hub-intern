@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function BottomBar() {
   return (
-    <div className="flex flex-row items-center justify-around w-full h-20  border border-ash rounded-t-2xl shadow-[rgba(0,0,0,0.75)_11px_23px_47px_11px] bg-white relative z-10">
+    <div className="flex flex-row items-center justify-around w-full h-20  border border-ash rounded-t-2xl shadow-[rgba(0,0,0,0.75)_11px_23px_47px_11px] bg-white  fixed bottom-0 z-10">
       <div className="flex flex-row items-center gap-10">
         <Button variant="ghost">
           <Link href={"/calendar"}>

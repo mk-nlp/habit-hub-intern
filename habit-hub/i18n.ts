@@ -12,6 +12,7 @@ const backendLanguage = async () => {
             },
         });
         const jsonData = await response.json();
+        console.log("HADE BE KARDEŞ", jsonData);
         return jsonData;
         
     };
@@ -20,6 +21,7 @@ const backendLanguage = async () => {
     export default getRequestConfig(async () => {
         try {
           const locale = await backendLanguage();
+          console.log ("LOCALE", locale);
 
           if (locale === null || locale === undefined || (locale !== "en" && locale !== "tr")) {
             return {

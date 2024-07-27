@@ -11,7 +11,7 @@ interface PlusButtonProps {
 export default function PlusButton({ buttonurl }: PlusButtonProps) {
   const router = useRouter();
   return (
-    <div className="absolute ">
+    <div className="fixed bottom-10 ">
       <Button
         className="bg-ash shadow-2xl rounded-full absolute bottom-32 left-80 w-14 h-14 hover:bg-purple hover:text-white"
         onClick={() => router.push(buttonurl)}

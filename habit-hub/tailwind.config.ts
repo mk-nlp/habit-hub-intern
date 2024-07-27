@@ -50,9 +50,13 @@ const config = {
       lineHeight: {
         12: "5.5rem",
       },
+      backgroundImage: {
+        "desktop": "url('/public/desktop-hero.svg')",
+    },
     },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
 export default config
+
